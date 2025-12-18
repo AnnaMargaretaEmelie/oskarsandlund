@@ -1,0 +1,44 @@
+//Colors
+$color-matrix-blue: #1C4A7A;
+$color-matrix-blue-dark: #0E2339;
+$color-electric-cyan: #00E5FF;
+$color-display-green: #5CFF8F;
+$color-synth-black: #0A0A0A;
+$color-knob-gray: #2A2A2A;
+$color-label-gray: #7A7A7A;
+$color-oberheim-wood: #6A4A2D;
+
+
+// Spacing
+$space-2xs: 0.25rem; // 4px
+$space-xs: 0.5rem;   // 8px
+$space-sm: 0.75rem;  // 12px
+$space-md: 1rem;     // 16px
+$space-lg: 1.5rem;   // 24px
+$space-xl: 2rem;     // 32px
+$space-2xl: 3rem;    // 48px
+
+//Typography
+$font-body: var(--font-ibm-plex-sans);
+$font-decor: var(--font-vt323);
+$font-heading: var(--font-moul);
+
+//Font-sizes
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-md: 1.0625rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 1.5rem;
+$font-size-2xl: 2rem;
+$font-size-3xl: 2.5rem;
+
+//Line heights
+$line-height-tight: 1.1;
+$line-height-normal: 1.4;
+$line-height-relaxed: 1.6;
+
+// Breakpoints
+$breakpoint-sm: 600px;
+$breakpoint-md: 900px;
+$breakpoint-lg: 1200px;
