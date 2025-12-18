@@ -20,17 +20,42 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Accessibility & Testing Checklist
 
-To learn more about Next.js, take a look at the following resources:
+This project follows basic WCAG 2.1 AA accessibility principles and includes the following considerations for the development phase:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Color & Contrast
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [ ] Text and UI elements meet WCAG AA contrast ratios (4.5:1 for body text, 3:1 for large headings)
+- [ ] Accent colors are never the sole carrier of meaning
+- [ ] Outlined or decorative text is not used for body copy
 
-## Deploy on Vercel
+### Typography & Readability
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [ ] Minimum body font size: 16px
+- [ ] Clear hierarchy using semantic HTML (H1 → H2 → H3)
+- [ ] Line height ensures readability (1.4–1.6)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Navigation & Interaction
+
+- [ ] All interactive elements have visible focus states
+- [ ] Keyboard navigation works for all core functionality
+- [ ] Links and buttons are distinguishable and include descriptive labels
+
+### Semantic Structure
+
+- [ ] Headings follow a logical order
+- [ ] Buttons use `<button>` and navigational items use `<a>` elements
+- [ ] ARIA attributes added only when necessary (not used to replace semantic HTML)
+
+### Images & Media
+
+- [ ] All informative images include descriptive alt text
+- [ ] Decorative images include `alt=""`
+- [ ] No auto-play audio; video will include controls
+
+### Testing
+
+- [ ] Manual keyboard test (Tab, Shift+Tab, Enter, Space)
+- [ ] Responsive testing on mobile, tablet, and desktop
+- [ ] Lighthouse accessibility audit run before deployment
