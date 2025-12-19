@@ -35,7 +35,11 @@ export default function RootLayout({
       lang="en"
       className={`${moul.variable} ${vt323.variable} ${ibmPlexSans.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <header>Header placeholder</header>
+        <main>{children}</main>
+        <footer>Footer placeholder</footer>
+      </body>
     </html>
   );
 }
