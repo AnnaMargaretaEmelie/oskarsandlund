@@ -1,0 +1,26 @@
+@use "../abstracts/tokens" as t;
+
+h1 {
+    color: t.$color-label-gray;
+    font-size: t.$font-size-3xl;
+    font-family: t.$font-heading;
+}
+
+h2 {
+    color: t.$color-synth-black;
+    font-size: t.$font-size-xl;
+    font-family: t.$font-decor;
+}
+
+h3 {
+    color: t.$color-synth-black;
+    font-size: t.$font-size-md;
+    font-family: t.$font-decor;
+}
+
+p {
+    color: t.$color-synth-black;
+    font-size: t.$font-size-xs;
+    font-family: t.$font-body;
+}
+
