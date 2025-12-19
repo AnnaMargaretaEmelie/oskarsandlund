@@ -1,1 +1,6 @@
 @use "../abstracts/tokens" as t;
+
+.stack {
+  display: grid;
+  gap: t.$space-xl;
+}

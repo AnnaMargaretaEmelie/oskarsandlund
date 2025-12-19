@@ -1,1 +1,17 @@
 @use "../abstracts/tokens" as t;
+
+.container {
+  width: 100%;
+  max-width: 1100px; 
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: t.$space-md;
+  padding-right: t.$space-md;
+}
+
+@media (min-width: t.$breakpoint-md) {
+  .container {
+    padding-left: t.$space-lg;
+    padding-right: t.$space-lg;
+  }
+}
