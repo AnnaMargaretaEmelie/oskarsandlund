@@ -1,0 +1,9 @@
+@use "../abstracts/tokens" as t;
+
+body {
+    background-color: t.$color-synth-black;
+    color: t.$color-label-gray;
+    font-family: t.$font-body;
+    line-height: t.$line-height-normal;
+    font-size: t.$font-size-base;
+}
