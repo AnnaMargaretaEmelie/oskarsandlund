@@ -1,12 +1,11 @@
-@use "abstracts/tokens";
-@use "abstracts/mixins";
+@use "./abstracts/tokens";
+@use "./abstracts/mixins";
 
-@use "base/globals";
-@use "base/reset";
-@use "base/typography";
+@use "./base/globals";
+@use "./base/reset";
+@use "./base/typography";
 
-@use "layout/container";
-@use "layout/grid";
+@use "./layout/container";
+@use "./layout/grid";
 
-@use "utilities/spacing";
-@use "utilities/visually-hidden";
+@use "./utilities/utilities";
