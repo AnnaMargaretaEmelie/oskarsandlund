@@ -1,0 +1,11 @@
+@use "../../../styles/abstracts/tokens" as t;
+
+.copyRight {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    justify-content: center;
+    align-items: center;
+}
