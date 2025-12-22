@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, VT323, Moul } from "next/font/google";
 import "@/styles/index.scss";
+import { Header } from "./components/Header";
 
 const ibmPlexSans = IBM_Plex_Sans({
   variable: "--font-ibm-plex-sans",
@@ -36,8 +37,11 @@ export default function RootLayout({
       className={`${moul.variable} ${vt323.variable} ${ibmPlexSans.variable}`}
     >
       <body>
-        <header>Header placeholder</header>
-        <main>{children}</main>
+        <a href="#main-content" className="skip">
+          Skip to main content
+        </a>
+        <Header />
+        <main id="main-content">{children}</main>
         <footer>Footer placeholder</footer>
       </body>
     </html>
