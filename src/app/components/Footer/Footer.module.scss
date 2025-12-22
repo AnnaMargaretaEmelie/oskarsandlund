@@ -1,15 +1,12 @@
 @use "../../../styles/abstracts/tokens" as t;
 
-.copyRight {
-    font-size: t.$font-size-sm;
-    font-family: t.$font-decor;
-}
-
 .footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 50px; 
+    padding: t.$space-md;
     background-color: t.$color-knob-gray;
+    font-size: t.$font-size-sm;
+    font-family: t.$font-decor;
 
 }

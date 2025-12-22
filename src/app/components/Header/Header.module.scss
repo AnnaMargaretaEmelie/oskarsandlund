@@ -6,13 +6,10 @@
     padding-right: t.$space-2xl;
     padding-top: t.$space-lg;
     padding-bottom: t.$space-md;
-    
-    
 }
 
 .inner {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
