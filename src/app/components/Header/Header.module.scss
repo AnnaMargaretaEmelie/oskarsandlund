@@ -1,0 +1,25 @@
+@use "../../../styles/abstracts/tokens" as t;
+
+.header {
+    background-color: t.$color-knob-gray;
+    padding-left: t.$space-lg;
+    padding-right: t.$space-2xl;
+    padding-top: t.$space-lg;
+    padding-bottom: t.$space-md;
+}
+
+.inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inner ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    font-family: t.$font-decor;
+    font-size: t.$font-size-lg;
+    margin: 0;
+    padding: 0;
+}
