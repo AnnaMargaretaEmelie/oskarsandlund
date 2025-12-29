@@ -2,10 +2,11 @@
 
 .wrapper {
     background-color: t.$color-label-gray;
-    padding: t.$space-md;
+    padding: t.$space-xs;
     display: flex; 
     flex-direction: column; 
-    gap: t.$space-sm;
+    gap: t.$space-2xs;
+    aspect-ratio: 1/1.25;
 }
 
 .imageWrapper {
@@ -15,8 +16,16 @@
 
 .title {
     font-family: t.$font-decor;
+    font-size: t.$font-size-md;
 }
 
 .artist {
     font-family: t.$font-body;
+    font-size: t.$font-size-xs;
+}
+
+.title,
+.artist {
+  margin: 0;
+  line-height: t.$line-height-tight;
 }
