@@ -1,9 +1,22 @@
 @use "../../../styles/abstracts/tokens" as t;
 
-.wrapper{}
+.wrapper {
+    background-color: t.$color-label-gray;
+    padding: t.$space-md;
+    display: flex; 
+    flex-direction: column; 
+    gap: t.$space-sm;
+}
 
-.image{}
+.imageWrapper {
+    aspect-ratio: 1/1;
+    background-color: t.$color-matrix-blue;
+}
 
-.title{}
+.title {
+    font-family: t.$font-decor;
+}
 
-.artist{}
+.artist {
+    font-family: t.$font-body;
+}
