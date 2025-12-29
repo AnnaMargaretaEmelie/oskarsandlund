@@ -21,14 +21,8 @@ export const creditType = defineType({
             name: "roles",
             title: "Roles",
             type: "array",
-            of: [
-                defineField({
-                    name: "role",
-                    type: "string",
-                }),
-            ],
+            of: [{type: "string"}],
             options: {
-                layout: "tags",
                 list: [
                     {title: "Mix", value: "mix"},
                     {title: "Engineer", value: "engineer"},
