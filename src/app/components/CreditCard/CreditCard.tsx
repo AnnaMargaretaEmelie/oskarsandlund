@@ -18,6 +18,16 @@ export function CreditCard({ credit }: CreditCardProps) {
         <div className={styles.overlay}>
           <p>{credit.roles?.join(", ")}</p>
           {credit.year && <p>{credit.year}</p>}
+          {credit.spotifyUrl && (
+            <a
+              href={credit.spotifyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Listen to ${credit.title} on Spotify`}
+            >
+              Listen on Spotify
+            </a>
+          )}
         </div>
       </div>
       <p className={styles.title}>{credit.title}</p>

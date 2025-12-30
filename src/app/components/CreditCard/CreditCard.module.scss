@@ -68,8 +68,18 @@
   font-size: t.$font-size-xs;
 }
 
+.overlay a {
+  font-size: t.$font-size-xs;
+  text-decoration: underline;
+}
+
 .wrapper:hover .overlay, 
 .wrapper:focus-within .overlay {
     opacity: 1;
     transform: translateY(0);
+}
+
+.wrapper:hover .tapTarget,
+.wrapper:focus-within .tapTarget {
+  pointer-events: none;
 }
