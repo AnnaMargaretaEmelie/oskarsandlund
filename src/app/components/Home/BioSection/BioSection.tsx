@@ -1,3 +1,5 @@
+import styles from "./BioSection.module.scss";
+
 type BioSectionProps = {
   name?: string;
   profession?: string;
@@ -6,7 +8,7 @@ type BioSectionProps = {
 
 export function BioSection({ name, profession, shortBio }: BioSectionProps) {
   return (
-    <section aria-labelledby="home-bio-heading">
+    <section aria-labelledby="home-bio-heading" className={styles.section}>
       <h2 id="home-bio-heading">About</h2>
       <div>
         {name && (

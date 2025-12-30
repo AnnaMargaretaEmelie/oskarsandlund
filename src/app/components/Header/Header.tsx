@@ -5,7 +5,7 @@ export function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <h1>Oskar Sandlund</h1>
+        <div className={styles.siteTitle}>Oskar Sandlund</div>
         <nav aria-label="Primary navigation">
           <ul>
             <li>
