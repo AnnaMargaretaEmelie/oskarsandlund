@@ -25,9 +25,9 @@ export const creditType = defineType({
             options: {
                 list: [
                     {title: "Mix", value: "mix"},
-                    {title: "Engineer", value: "engineer"},
-                    {title: "Produced", value: "produced"},
-                    {title: "Mastered", value: "mastered"},
+                    {title: "Master", value: "master"},
+                    {title: "Recording", value: "recording"},
+                    {title: "Producer", value: "producer"},
                     {title: "Performance", value: "performance"},
                 ],
             },
@@ -39,9 +39,22 @@ export const creditType = defineType({
             validation: (Rule)=>Rule.required(),
         }),
         defineField({
-            name: "externalUrl",
-            title: "External URL",
+            name: "coverImage",
+            title: "Cover image",
+            type: "image",
+            options: {hotspot: true},
+        }),
+        defineField({
+            name: "coverAlt",
+            title: "Cover image alt text",
+            type: "string",
+            description: "Short description of the cover image for accessibility.",
+        }),
+        defineField({
+            name: "spotifyUrl",
+            title: "Spotify URL",
             type: "url",
+            description: "Link to album or track on Spotify."
         }),
         defineField({
             name: "isFeatured",
@@ -73,13 +86,14 @@ export const creditType = defineType({
         select: {
             title: "title",
             subtitle: "artist",
-            year: "year"
+            year: "year",
+            media: "coverImage",
         },
         prepare(selection) {
-            const {title, subtitle, year} = selection;
+            const {title, subtitle, year, media} = selection;
             return {
                 title: title,
-                subtitle: `${subtitle ?? ""}${year ? ` • ${year}` : ""}`,
+                subtitle: `${subtitle ?? ""}${year ? ` • ${year}` : ""}`, media,
             };
         },
     },
