@@ -1,0 +1,85 @@
+@use "../../../styles/abstracts/tokens" as t;
+
+.wrapper {
+    background-color: t.$color-label-gray;
+    padding: t.$space-xs;
+    display: flex; 
+    flex-direction: column; 
+    gap: t.$space-2xs;
+    aspect-ratio: 1/1.25;
+}
+
+.imageWrapper {
+    aspect-ratio: 1/1;
+    background-color: t.$color-matrix-blue;
+    position: relative;
+    overflow: hidden;
+}
+
+.title {
+    font-family: t.$font-decor;
+    font-size: t.$font-size-md;
+}
+
+.artist {
+    font-family: t.$font-body;
+    font-size: t.$font-size-xs;
+}
+
+.title,
+.artist {
+  margin: 0;
+  line-height: t.$line-height-tight;
+}
+
+.tapTarget {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: transparent;
+    border: 0;
+    transition: opacity 150ms ease;
+    z-index: 2;
+}
+
+.tapTarget:focus-visible {
+    outline: 2px solid t.$color-electric-cyan;
+    outline-offset: 2px;
+
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    padding: t.$space-sm;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: t.$space-2xs;
+    opacity: 0;
+    z-index: 1;
+    transform: translateY(4px);
+    transition: opacity 150ms ease, transform 150ms ease;
+    background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0) 65%);
+
+}
+.overlay p {
+  margin: 0;
+  font-size: t.$font-size-xs;
+}
+
+.overlay a {
+  font-size: t.$font-size-xs;
+  text-decoration: underline;
+}
+
+.wrapper:hover .overlay, 
+.wrapper:focus-within .overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.wrapper:hover .tapTarget,
+.wrapper:focus-within .tapTarget {
+  pointer-events: none;
+}

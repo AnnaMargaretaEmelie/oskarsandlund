@@ -124,7 +124,20 @@ export type Credit = {
   artist?: string;
   roles?: Array<string>;
   year?: number;
-  externalUrl?: string;
+  coverImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  coverAlt?: string;
+  spotifyUrl?: string;
   isFeatured?: boolean;
   notes?: string;
   sortOrder?: number;
@@ -237,27 +250,51 @@ export type AllSanitySchemaTypes = SiteSettings | SanityImageCrop | SanityImageH
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../src/lib/sanity/queries.ts
 // Variable: ALL_CREDITS_QUERY
-// Query: *[_type == "credit"]| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {  _id,  title,  artist,  roles[],  year,  externalUrl,  notes,  isFeatured,  "slug": slug.current}
+// Query: *[_type == "credit"]| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {  _id,  title,  artist,  roles[],  year,  coverImage,  spotifyUrl,  notes,  isFeatured,  "slug": slug.current}
 export type ALL_CREDITS_QUERYResult = Array<{
   _id: string;
   title: string | null;
   artist: string | null;
   roles: Array<string> | null;
   year: number | null;
-  externalUrl: string | null;
+  coverImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  spotifyUrl: string | null;
   notes: string | null;
   isFeatured: boolean | null;
   slug: string | null;
 }>;
 // Variable: FEATURED_CREDITS_QUERY
-// Query: *[_type == "credit" && isFeatured == true]| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {  _id,  title,  artist,  roles[],  year,  externalUrl,  notes,  "slug": slug.current}
+// Query: *[_type == "credit" && isFeatured == true]| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {  _id,  title,  artist,  roles[],  year,  coverImage,  spotifyUrl,  notes,  "slug": slug.current}
 export type FEATURED_CREDITS_QUERYResult = Array<{
   _id: string;
   title: string | null;
   artist: string | null;
   roles: Array<string> | null;
   year: number | null;
-  externalUrl: string | null;
+  coverImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  spotifyUrl: string | null;
   notes: string | null;
   slug: string | null;
 }>;
@@ -266,7 +303,7 @@ export type FEATURED_CREDITS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n*[_type == \"credit\"]\n| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {\n  _id,\n  title,\n  artist,\n  roles[],\n  year,\n  externalUrl,\n  notes,\n  isFeatured,\n  \"slug\": slug.current\n}\n": ALL_CREDITS_QUERYResult;
-    "\n*[_type == \"credit\" && isFeatured == true]\n| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {\n  _id,\n  title,\n  artist,\n  roles[],\n  year,\n  externalUrl,\n  notes,\n  \"slug\": slug.current\n}\n": FEATURED_CREDITS_QUERYResult;
+    "\n*[_type == \"credit\"]\n| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {\n  _id,\n  title,\n  artist,\n  roles[],\n  year,\n  coverImage,\n  spotifyUrl,\n  notes,\n  isFeatured,\n  \"slug\": slug.current\n}\n": ALL_CREDITS_QUERYResult;
+    "\n*[_type == \"credit\" && isFeatured == true]\n| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {\n  _id,\n  title,\n  artist,\n  roles[],\n  year,\n  coverImage,\n  spotifyUrl,\n  notes,\n  \"slug\": slug.current\n}\n": FEATURED_CREDITS_QUERYResult;
   }
 }
