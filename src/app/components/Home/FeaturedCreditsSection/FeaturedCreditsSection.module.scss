@@ -1,0 +1,13 @@
+@use "../../../../styles/abstracts/tokens" as t;
+
+.section {
+    padding-block: t.$space-sm;
+    border-bottom: 1px greenyellow;
+}
+
+.grid {
+    display: grid;
+    gap: t.$space-md; 
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+

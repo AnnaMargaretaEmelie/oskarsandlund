@@ -275,7 +275,7 @@ export type ALL_CREDITS_QUERYResult = Array<{
   slug: string | null;
 }>;
 // Variable: FEATURED_CREDITS_QUERY
-// Query: *[_type == "credit" && isFeatured == true]| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {  _id,  title,  artist,  roles[],  year,  coverImage,  spotifyUrl,  notes,  "slug": slug.current}
+// Query: *[_type == "credit" && isFeatured == true]| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {  _id,  title,  artist,  roles[],  year,  coverImage,  spotifyUrl,  notes,  isFeatured,  "slug": slug.current}
 export type FEATURED_CREDITS_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -296,14 +296,44 @@ export type FEATURED_CREDITS_QUERYResult = Array<{
   } | null;
   spotifyUrl: string | null;
   notes: string | null;
+  isFeatured: boolean | null;
   slug: string | null;
 }>;
+// Variable: SITE_SETTINGS_QUERY
+// Query: *[_type == "siteSettings"][0] {  _id,  siteTitle,  tagline}
+export type SITE_SETTINGS_QUERYResult = {
+  _id: string;
+  siteTitle: string | null;
+  tagline: string | null;
+} | null;
+// Variable: BIO_QUERY
+// Query: *[_type == "bio"][0] {    _id,    name,    profession,    shortBio,    profileImage  }
+export type BIO_QUERYResult = {
+  _id: string;
+  name: string | null;
+  profession: string | null;
+  shortBio: string | null;
+  profileImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n*[_type == \"credit\"]\n| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {\n  _id,\n  title,\n  artist,\n  roles[],\n  year,\n  coverImage,\n  spotifyUrl,\n  notes,\n  isFeatured,\n  \"slug\": slug.current\n}\n": ALL_CREDITS_QUERYResult;
-    "\n*[_type == \"credit\" && isFeatured == true]\n| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {\n  _id,\n  title,\n  artist,\n  roles[],\n  year,\n  coverImage,\n  spotifyUrl,\n  notes,\n  \"slug\": slug.current\n}\n": FEATURED_CREDITS_QUERYResult;
+    "\n*[_type == \"credit\" && isFeatured == true]\n| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {\n  _id,\n  title,\n  artist,\n  roles[],\n  year,\n  coverImage,\n  spotifyUrl,\n  notes,\n  isFeatured,\n  \"slug\": slug.current\n}\n": FEATURED_CREDITS_QUERYResult;
+    "\n*[_type == \"siteSettings\"][0] {\n  _id,\n  siteTitle,\n  tagline\n}\n": SITE_SETTINGS_QUERYResult;
+    "\n  *[_type == \"bio\"][0] {\n    _id,\n    name,\n    profession,\n    shortBio,\n    profileImage\n  }\n  ": BIO_QUERYResult;
   }
 }
