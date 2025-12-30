@@ -1,8 +1,15 @@
 export default function Home() {
   return (
-    <main>
-      <h1>Oskar Sandlund</h1>
-      <p>Här är startsidan.</p>
-    </main>
+    <div>
+      <section>
+        <h2>Hero</h2>
+      </section>
+      <section aria-labelledby="">
+        <h2>Bio</h2>
+      </section>
+      <section aria-labelledby="">
+        <h2>Featured credits</h2>
+      </section>
+    </div>
   );
 }
