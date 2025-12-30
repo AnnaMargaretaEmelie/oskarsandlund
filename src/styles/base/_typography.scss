@@ -1,7 +1,7 @@
 @use "../abstracts/tokens" as t;
 
 h1 {
-    font-size: t.$font-size-3xl;
+    font-size: t.$font-size-2xl;
     font-family: t.$font-heading;
     line-height: t.$line-height-tight;
 }

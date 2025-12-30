@@ -27,6 +27,25 @@ export const FEATURED_CREDITS_QUERY = defineQuery(`
   coverImage,
   spotifyUrl,
   notes,
+  isFeatured,
   "slug": slug.current
 }
 `);
+
+export const SITE_SETTINGS_QUERY = defineQuery(`
+*[_type == "siteSettings"][0] {
+  _id,
+  siteTitle,
+  tagline
+}
+`);
+
+export const BIO_QUERY = defineQuery(`
+  *[_type == "bio"][0] {
+    _id,
+    name,
+    profession,
+    shortBio,
+    profileImage
+  }
+  `);

@@ -1,0 +1,15 @@
+@use "../styles/abstracts/tokens" as t;
+
+.page {
+  margin: 0 auto;
+  max-width: 1200px;
+  
+  padding-inline: t.$space-lg;
+  padding-block: t.$space-md;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-lg;
+}
