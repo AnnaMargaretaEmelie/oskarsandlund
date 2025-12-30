@@ -27,6 +27,7 @@ export const FEATURED_CREDITS_QUERY = defineQuery(`
   coverImage,
   spotifyUrl,
   notes,
+  isFeatured,
   "slug": slug.current
 }
 `);
