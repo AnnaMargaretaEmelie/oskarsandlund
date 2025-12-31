@@ -36,7 +36,11 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
 *[_type == "siteSettings"][0] {
   _id,
   siteTitle,
-  tagline
+  tagline,
+  contactEmail,
+  contactPhone,
+  contactLocation,
+  socialLinks[] {label, url, isPrimary}
 }
 `);
 
@@ -49,3 +53,13 @@ export const BIO_QUERY = defineQuery(`
     profileImage
   }
   `);
+
+  export const SERVICES_QUERY = defineQuery(`
+    *[_type == "service"] | order(coalesce(order, 9999) asc, title asc) {
+      _id,
+      title,
+      description,
+      order,
+      icon
+    }
+    `);
