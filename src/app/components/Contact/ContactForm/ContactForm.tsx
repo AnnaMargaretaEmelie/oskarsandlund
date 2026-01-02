@@ -49,8 +49,15 @@ export function ContactForm() {
     setMessage(e.target.value);
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, message }),
+    });
+    const result = await response.json();
+    console.log(result);
   }
 
   function handleBlur(field: FieldName) {
