@@ -300,11 +300,19 @@ export type FEATURED_CREDITS_QUERYResult = Array<{
   slug: string | null;
 }>;
 // Variable: SITE_SETTINGS_QUERY
-// Query: *[_type == "siteSettings"][0] {  _id,  siteTitle,  tagline}
+// Query: *[_type == "siteSettings"][0] {  _id,  siteTitle,  tagline,  contactEmail,  contactPhone,  contactLocation,  socialLinks[] {label, url, isPrimary}}
 export type SITE_SETTINGS_QUERYResult = {
   _id: string;
   siteTitle: string | null;
   tagline: string | null;
+  contactEmail: string | null;
+  contactPhone: string | null;
+  contactLocation: string | null;
+  socialLinks: Array<{
+    label: string | null;
+    url: string | null;
+    isPrimary: boolean | null;
+  }> | null;
 } | null;
 // Variable: BIO_QUERY
 // Query: *[_type == "bio"][0] {    _id,    name,    profession,    shortBio,    profileImage  }
@@ -326,6 +334,26 @@ export type BIO_QUERYResult = {
     _type: "image";
   } | null;
 } | null;
+// Variable: SERVICES_QUERY
+// Query: *[_type == "service"] | order(coalesce(order, 9999) asc, title asc) {      _id,      title,      description,      order,      icon    }
+export type SERVICES_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  description: string | null;
+  order: number | null;
+  icon: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -333,7 +361,8 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "\n*[_type == \"credit\"]\n| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {\n  _id,\n  title,\n  artist,\n  roles[],\n  year,\n  coverImage,\n  spotifyUrl,\n  notes,\n  isFeatured,\n  \"slug\": slug.current\n}\n": ALL_CREDITS_QUERYResult;
     "\n*[_type == \"credit\" && isFeatured == true]\n| order(coalesce(sortOrder, 9999) asc, year desc, title asc) {\n  _id,\n  title,\n  artist,\n  roles[],\n  year,\n  coverImage,\n  spotifyUrl,\n  notes,\n  isFeatured,\n  \"slug\": slug.current\n}\n": FEATURED_CREDITS_QUERYResult;
-    "\n*[_type == \"siteSettings\"][0] {\n  _id,\n  siteTitle,\n  tagline\n}\n": SITE_SETTINGS_QUERYResult;
+    "\n*[_type == \"siteSettings\"][0] {\n  _id,\n  siteTitle,\n  tagline,\n  contactEmail,\n  contactPhone,\n  contactLocation,\n  socialLinks[] {label, url, isPrimary}\n}\n": SITE_SETTINGS_QUERYResult;
     "\n  *[_type == \"bio\"][0] {\n    _id,\n    name,\n    profession,\n    shortBio,\n    profileImage\n  }\n  ": BIO_QUERYResult;
+    "\n    *[_type == \"service\"] | order(coalesce(order, 9999) asc, title asc) {\n      _id,\n      title,\n      description,\n      order,\n      icon\n    }\n    ": SERVICES_QUERYResult;
   }
 }
