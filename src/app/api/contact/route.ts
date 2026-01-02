@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { sanityAdminClient } from "@/lib/sanity/sanity.admin";
 
 import {
   validateName,
@@ -32,6 +33,14 @@ export async function POST(request: Request) {
         status: 400,
       });
     }
+
+    const saved = await sanityAdminClient.create({
+      _type: "contactMessage",
+      name,
+      email,
+      message,
+      createdAt: new Date().toISOString(),
+    });
     console.log("RESEND key exists?", Boolean(process.env.RESEND_API_KEY));
 
     const { data, error } = await resend.emails.send({
@@ -47,9 +56,12 @@ export async function POST(request: Request) {
       });
     }
 
-    return new Response(JSON.stringify({ ok: true, id: data?.id }), {
-      status: 200,
-    });
+    return new Response(
+      JSON.stringify({ ok: true, SanityId: saved._id, resendId: data?.id }),
+      {
+        status: 200,
+      }
+    );
   } catch (error) {
     console.error(error);
     return new Response(JSON.stringify({ ok: false }), { status: 500 });
