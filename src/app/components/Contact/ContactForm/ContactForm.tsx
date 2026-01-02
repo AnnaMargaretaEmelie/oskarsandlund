@@ -3,10 +3,39 @@
 import { useState } from "react";
 import styles from "./ContactForm.module.scss";
 
+type FieldName = "name" | "email" | "message";
+
+export function validateName(name: string) {
+  if (name === "") {
+    return "Please let me know your name";
+  }
+  return undefined;
+}
+
+export function validateEmail(email: string) {
+  if (email === "" || !email.includes("@")) {
+    return "Please enter your correct email adress";
+  }
+  return undefined;
+}
+
+export function validateMessage(message: string) {
+  if (message.length < 5) {
+    return "Write me something I can respond to, at least 5 characters, you can do it! ";
+  }
+  return undefined;
+}
+
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [touched, setTouched] = useState<Record<FieldName, boolean>>({
+    name: false,
+    email: false,
+    message: false,
+  });
+  const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
 
   function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
     setName(e.target.value);
@@ -24,6 +53,19 @@ export function ContactForm() {
     e.preventDefault();
   }
 
+  function handleBlur(field: FieldName) {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+
+    const error =
+      field === "name"
+        ? validateName(name)
+        : field === "email"
+          ? validateEmail(email)
+          : validateMessage(message);
+
+    setErrors((prev) => ({ ...prev, [field]: error }));
+  }
+
   return (
     <section>
       <form onSubmit={handleSubmit}>
@@ -32,22 +74,52 @@ export function ContactForm() {
           placeholder="Your name"
           value={name}
           onChange={handleNameChange}
+          onBlur={() => handleBlur("name")}
           type="text"
+          aria-invalid={Boolean(touched.name && errors.name)}
+          aria-describedby={
+            touched.name && errors.name ? "name-error" : undefined
+          }
         />
+        {touched.name && errors.name && (
+          <p className={styles.error} id="name-error">
+            {errors.name}
+          </p>
+        )}
         <input
           name="email"
           placeholder="your@email.here"
           value={email}
           onChange={handleEmailChange}
+          onBlur={() => handleBlur("email")}
           type="email"
+          aria-invalid={Boolean(touched.email && errors.email)}
+          aria-describedby={
+            touched.email && errors.email ? "email-error" : undefined
+          }
         />
+        {touched.email && errors.email && (
+          <p className={styles.error} id="email-error">
+            {errors.email}
+          </p>
+        )}
         <textarea
           name="message"
           id="message"
           placeholder="Write your message here"
           value={message}
           onChange={handleMessageChange}
+          onBlur={() => handleBlur("message")}
+          aria-invalid={Boolean(touched.message && errors.message)}
+          aria-describedby={
+            touched.message && errors.message ? "message-error" : undefined
+          }
         ></textarea>
+        {touched.message && errors.message && (
+          <p className={styles.error} id="message-error">
+            {errors.message}
+          </p>
+        )}
         <button type="submit">Send</button>
       </form>
     </section>
