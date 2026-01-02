@@ -12,7 +12,7 @@ import {
 import { HeroSection } from "./components/Home/HeroSection/HeroSection";
 import { BioSection } from "./components/Home/BioSection/BioSection";
 import { FeaturedCreditsSection } from "./components/Home/FeaturedCreditsSection/FeaturedCreditsSection";
-import styles from "./page.module.scss";
+import styles from "./homePage.module.scss";
 
 export default async function Home() {
   const [siteSettings, bio, featuredCredits] = await Promise.all([
