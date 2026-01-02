@@ -20,7 +20,7 @@ export const serviceType = defineType({
             name: "order",
             title: "Order",
             type: "number",
-            validation: (rule) => rule.min(1).max(10),
+            validation: (rule) => rule.min(1).max(10).required(), 
         }),
         defineField({
             name: "icon",
