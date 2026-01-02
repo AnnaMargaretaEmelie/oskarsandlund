@@ -1,8 +1,12 @@
+import { Resend } from "resend";
+
 import {
   validateName,
   validateEmail,
   validateMessage,
 } from "@/lib/contact/validation";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
@@ -21,17 +25,33 @@ export async function POST(request: Request) {
 
     if (nameError) errors.name = nameError;
     if (emailError) errors.email = emailError;
-    if (messageError) message.email = messageError;
+    if (messageError) errors.message = messageError;
 
     if (Object.keys(errors).length > 0) {
       return new Response(JSON.stringify({ ok: false, errors }), {
         status: 400,
       });
     }
+    console.log("RESEND key exists?", Boolean(process.env.RESEND_API_KEY));
 
-    return new Response(JSON.stringify({ ok: true }), { status: 200 });
+    const { data, error } = await resend.emails.send({
+      from: "Contact form <onboarding@resend.dev>",
+      to: "annaviklund@gmail.com",
+      replyTo: email,
+      subject: "New message for you!",
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    });
+    if (error) {
+      return new Response(JSON.stringify({ ok: false, error }), {
+        status: 500,
+      });
+    }
+
+    return new Response(JSON.stringify({ ok: true, id: data?.id }), {
+      status: 200,
+    });
   } catch (error) {
     console.error(error);
-    return new Response(JSON.stringify({ ok: false }), { status: 400 });
+    return new Response(JSON.stringify({ ok: false }), { status: 500 });
   }
 }
