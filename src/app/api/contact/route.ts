@@ -7,12 +7,26 @@ import {
   validateMessage,
 } from "@/lib/contact/validation";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
   try {
+    if (!process.env.SANITY_API_TOKEN) {
+      console.error("Missing SANITY_API_TOKEN");
+      return new Response(
+        JSON.stringify({ ok: false, error: "Server misconfiguration" }),
+        { status: 500 }
+      );
+    }
+
+    if (!process.env.RESEND_API_KEY) {
+      console.error("Missing RESEND_API_KEY");
+      return new Response(
+        JSON.stringify({ ok: false, error: "Server misconfiguration" }),
+        { status: 500 }
+      );
+    }
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     const body = await request.json();
-    console.log("Contact Form payload:", body);
 
     const name = typeof body?.name === "string" ? body.name : "";
     const email = typeof body?.email === "string" ? body.email : "";

@@ -8,6 +8,3 @@ export const sanityAdminClient = createClient({
   token: process.env.SANITY_API_TOKEN,
 });
 
-if (!process.env.SANITY_API_TOKEN) {
-  throw new Error("Missing SANITY_API_TOKEN");
-}
