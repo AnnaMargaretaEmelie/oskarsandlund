@@ -57,7 +57,7 @@ export async function POST(request: Request) {
     }
 
     return new Response(
-      JSON.stringify({ ok: true, SanityId: saved._id, resendId: data?.id }),
+      JSON.stringify({ ok: true, sanityId: saved._id, resendId: data?.id }),
       {
         status: 200,
       }

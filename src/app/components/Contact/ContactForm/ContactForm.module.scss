@@ -1,1 +1,57 @@
 @use "../../../../styles/abstracts/tokens" as t;
+
+.section {
+  max-width: 42rem;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font: inherit;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.input[aria-invalid="true"],
+.textarea[aria-invalid="true"] {
+  border-color: #c0392b;
+}
+
+.button {
+  align-self: flex-start;
+  padding: 0.75rem 1.25rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #c0392b;
+  font-size: 0.875rem;
+}
+
+.success {
+  max-width: 42rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.meta {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}

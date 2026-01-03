@@ -110,12 +110,12 @@ export function ContactForm() {
   if (isSubmitted) {
     return (
       <section className={styles.success}>
-        <h3>Thanks!!</h3>
-        <p>Your message has been sent.</p>{" "}
+        <h3>Thanks!</h3>
+        <p>Your message has been sent.</p>
         {receipt?.sanityId && (
           <p className={styles.meta}>Reference: {receipt.sanityId}</p>
-        )}{" "}
-        <button type="button" onClick={resetForm}>
+        )}
+        <button type="button" className={styles.button} onClick={resetForm}>
           Send me another one!
         </button>
       </section>
@@ -123,62 +123,70 @@ export function ContactForm() {
   }
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
+    <section className={styles.section}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         {submitError && <p className={styles.error}>{submitError}</p>}
-
-        <input
-          name="name"
-          placeholder="Your name"
-          value={name}
-          onChange={handleNameChange}
-          onBlur={() => handleBlur("name")}
-          type="text"
-          aria-invalid={Boolean(touched.name && errors.name)}
-          aria-describedby={
-            touched.name && errors.name ? "name-error" : undefined
-          }
-        />
-        {touched.name && errors.name && (
-          <p className={styles.error} id="name-error">
-            {errors.name}
-          </p>
-        )}
-        <input
-          name="email"
-          placeholder="your@email.here"
-          value={email}
-          onChange={handleEmailChange}
-          onBlur={() => handleBlur("email")}
-          type="email"
-          aria-invalid={Boolean(touched.email && errors.email)}
-          aria-describedby={
-            touched.email && errors.email ? "email-error" : undefined
-          }
-        />
-        {touched.email && errors.email && (
-          <p className={styles.error} id="email-error">
-            {errors.email}
-          </p>
-        )}
-        <textarea
-          name="message"
-          id="message"
-          placeholder="Write your message here"
-          value={message}
-          onChange={handleMessageChange}
-          onBlur={() => handleBlur("message")}
-          aria-invalid={Boolean(touched.message && errors.message)}
-          aria-describedby={
-            touched.message && errors.message ? "message-error" : undefined
-          }
-        ></textarea>
-        {touched.message && errors.message && (
-          <p className={styles.error} id="message-error">
-            {errors.message}
-          </p>
-        )}
-        <button type="submit" disabled={isSubmitting}>
+        <div className={styles.field}>
+          <input
+            name="name"
+            placeholder="Your name"
+            className={styles.input}
+            value={name}
+            onChange={handleNameChange}
+            onBlur={() => handleBlur("name")}
+            type="text"
+            aria-invalid={Boolean(touched.name && errors.name)}
+            aria-describedby={
+              touched.name && errors.name ? "name-error" : undefined
+            }
+          />
+          {touched.name && errors.name && (
+            <p className={styles.error} id="name-error">
+              {errors.name}
+            </p>
+          )}
+        </div>
+        <div className={styles.field}>
+          <input
+            name="email"
+            placeholder="your@email.here"
+            className={styles.input}
+            value={email}
+            onChange={handleEmailChange}
+            onBlur={() => handleBlur("email")}
+            type="email"
+            aria-invalid={Boolean(touched.email && errors.email)}
+            aria-describedby={
+              touched.email && errors.email ? "email-error" : undefined
+            }
+          />
+          {touched.email && errors.email && (
+            <p className={styles.error} id="email-error">
+              {errors.email}
+            </p>
+          )}
+        </div>
+        <div className={styles.field}>
+          <textarea
+            name="message"
+            id="message"
+            placeholder="Write your message here"
+            className={styles.textarea}
+            value={message}
+            onChange={handleMessageChange}
+            onBlur={() => handleBlur("message")}
+            aria-invalid={Boolean(touched.message && errors.message)}
+            aria-describedby={
+              touched.message && errors.message ? "message-error" : undefined
+            }
+          ></textarea>
+          {touched.message && errors.message && (
+            <p className={styles.error} id="message-error">
+              {errors.message}
+            </p>
+          )}
+        </div>
+        <button type="submit" disabled={isSubmitting} className={styles.button}>
           {isSubmitting ? "Sending..." : "Send"}
         </button>
       </form>
