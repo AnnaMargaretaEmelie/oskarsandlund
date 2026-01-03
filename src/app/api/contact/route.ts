@@ -55,7 +55,6 @@ export async function POST(request: Request) {
       message,
       createdAt: new Date().toISOString(),
     });
-    console.log("RESEND key exists?", Boolean(process.env.RESEND_API_KEY));
 
     const { data, error } = await resend.emails.send({
       from: "Contact form <onboarding@resend.dev>",
@@ -65,6 +64,7 @@ export async function POST(request: Request) {
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     });
     if (error) {
+      console.error("Resend error:", error);
       return new Response(JSON.stringify({ ok: false, error }), {
         status: 500,
       });
