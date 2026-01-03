@@ -97,6 +97,31 @@ export function ContactForm() {
     }
   }
 
+  function resetForm() {
+    setName("");
+    setEmail("");
+    setMessage("");
+    setTouched({ name: false, email: false, message: false });
+    setErrors({});
+    setSubmitError(null);
+    setReceipt(null);
+    setIsSubmitted(false);
+  }
+  if (isSubmitted) {
+    return (
+      <section className={styles.success}>
+        <h3>Thanks!!</h3>
+        <p>Your message has been sent.</p>{" "}
+        {receipt?.sanityId && (
+          <p className={styles.meta}>Reference: {receipt.sanityId}</p>
+        )}{" "}
+        <button type="button" onClick={resetForm}>
+          Send me another one!
+        </button>
+      </section>
+    );
+  }
+
   return (
     <section>
       <form onSubmit={handleSubmit}>
