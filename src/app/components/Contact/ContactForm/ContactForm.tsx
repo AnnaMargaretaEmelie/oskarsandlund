@@ -20,6 +20,13 @@ export function ContactForm() {
     message: false,
   });
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [receipt, setReceipt] = useState<{
+    sanityId?: string;
+    resendId?: string;
+  } | null>(null);
 
   function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
     setName(e.target.value);
@@ -31,17 +38,6 @@ export function ContactForm() {
 
   function handleMessageChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setMessage(e.target.value);
-  }
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, message }),
-    });
-    const result = await response.json();
-    console.log(result);
   }
 
   function handleBlur(field: FieldName) {
@@ -57,9 +53,55 @@ export function ContactForm() {
     setErrors((prev) => ({ ...prev, [field]: error }));
   }
 
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setTouched({ name: true, email: true, message: true });
+
+    const newErrors = {
+      name: validateName(name),
+      email: validateEmail(email),
+      message: validateMessage(message),
+    };
+
+    setErrors(newErrors);
+
+    const hasErrors = Boolean(
+      newErrors.name || newErrors.email || newErrors.message
+    );
+    if (hasErrors) return;
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const result = await response.json();
+      if (result.ok) {
+        setIsSubmitted(true);
+        setReceipt({
+          sanityId: result.sanityId,
+          resendId: result.resendId,
+        });
+      } else {
+        setSubmitError("Something went wrong, please try again");
+      }
+    } catch (error) {
+      console.error(error);
+      setSubmitError("Network error, please try again later");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
     <section>
       <form onSubmit={handleSubmit}>
+        {submitError && <p className={styles.error}>{submitError}</p>}
+
         <input
           name="name"
           placeholder="Your name"
@@ -111,7 +153,9 @@ export function ContactForm() {
             {errors.message}
           </p>
         )}
-        <button type="submit">Send</button>
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Sending..." : "Send"}
+        </button>
       </form>
     </section>
   );
