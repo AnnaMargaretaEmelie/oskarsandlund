@@ -1,5 +1,5 @@
 import { FEATURED_CREDITS_QUERYResult } from "@/lib/sanity/sanity.types";
-import { CreditCard } from "../../CreditCard/CreditCard";
+import { CreditCard } from "../../Credits/CreditCard/CreditCard";
 import styles from "./FeaturedCreditsSection.module.scss";
 
 type FeaturedCreditsSectionProps = {
