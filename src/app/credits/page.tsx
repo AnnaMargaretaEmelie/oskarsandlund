@@ -6,7 +6,6 @@ import { CreditsList } from "../components/Credits/CreditsList/CreditsList";
 export default async function CreditsPage() {
   const credits =
     await sanityClient.fetch<ALL_CREDITS_QUERYResult>(ALL_CREDITS_QUERY);
-
   return (
     <section>
       <h1>Credits</h1>
