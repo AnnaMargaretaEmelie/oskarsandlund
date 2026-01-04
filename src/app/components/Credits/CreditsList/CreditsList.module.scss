@@ -1,8 +1,31 @@
 @use "../../../../styles/abstracts/tokens" as t;
 
-.grid {
+.wrapper {
+    display: grid;
     padding: t.$space-md;
+    gap: t.$space-md;
+}
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: t.$space-md;
+}
+.grid {
     display: grid;
     gap: t.$space-md;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.button {
+    padding: t.$space-xs t.$space-sm;
+    border-radius: 999px;
+    border: 1px solid t.$color-label-gray;
+    background: transparent;
+    color: t.$color-text;
+}
+.active {
+    background-color: t.$color-knob-gray;
+}
+.reset {
+    background-color: t.$color-knob-gray;
+    color: white;
 }
