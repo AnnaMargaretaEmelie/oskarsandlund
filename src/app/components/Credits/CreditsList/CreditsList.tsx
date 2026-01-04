@@ -5,7 +5,7 @@ import { CreditCard } from "../CreditCard/CreditCard";
 import styles from "./CreditsList.module.scss";
 import { useState } from "react";
 
-type FilterKey = "performance" | "engineer" | "producer" | "randomize" | "all";
+type FilterKey = "performance" | "engineer" | "producer" | "all";
 
 type CreditsListProps = {
   credits: ALL_CREDITS_QUERYResult;
@@ -13,27 +13,43 @@ type CreditsListProps = {
 
 const ENGINEER_ROLES = ["mix", "master", "recording"];
 
+function shuffleArray<T>(array: T[]) {
+  const copy = [...array];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
 export function CreditsList({ credits }: CreditsListProps) {
   const [activeFilter, setActiveFilter] = useState<FilterKey>("all");
+  const [shuffledCredits, setShuffledCredits] =
+    useState<ALL_CREDITS_QUERYResult | null>(null);
+
   function handleFilterClick(filter: FilterKey) {
     setActiveFilter(filter);
+    setShuffledCredits(null);
   }
   let visibleCredits = credits;
   if (activeFilter === "performance") {
     visibleCredits = credits.filter((credit) =>
       credit.roles?.includes("performance")
     );
-  }
-  if (activeFilter === "producer") {
+  } else if (activeFilter === "producer") {
     visibleCredits = credits.filter((credit) =>
       credit.roles?.includes("producer")
     );
-  }
-  if (activeFilter === "engineer") {
+  } else if (activeFilter === "engineer") {
     visibleCredits = credits.filter((credit) =>
       credit.roles?.some((role) => ENGINEER_ROLES.includes(role))
     );
   }
+  function handleRandomizeClick() {
+    setShuffledCredits(shuffleArray(visibleCredits));
+  }
+
+  const creditsToRender = shuffledCredits ?? visibleCredits;
 
   return (
     <div className={styles.wrapper}>
@@ -61,8 +77,8 @@ export function CreditsList({ credits }: CreditsListProps) {
         </button>
         <button
           type="button"
-          onClick={() => handleFilterClick("randomize")}
-          className={`${styles.button} ${activeFilter === "randomize" ? styles.active : ""}`}
+          onClick={handleRandomizeClick}
+          className={styles.button}
         >
           Randomize
         </button>
@@ -75,7 +91,7 @@ export function CreditsList({ credits }: CreditsListProps) {
         </button>
       </div>
       <div className={styles.grid}>
-        {visibleCredits.map((credit) => (
+        {creditsToRender.map((credit) => (
           <CreditCard key={credit._id} credit={credit} />
         ))}
       </div>
