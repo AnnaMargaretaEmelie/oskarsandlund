@@ -11,7 +11,7 @@ function parseSpotifyUrl(url: string): SpotifyEntity | null {
         }
 
         const u = new URL(url);
-        const [_, type, id] = u.pathname.split("/");
+        const [, type, id] = u.pathname.split("/");
         if ((type === "track" || type === "album") && id) return {type, id};
         return null;
     } catch {

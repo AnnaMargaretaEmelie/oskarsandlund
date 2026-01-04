@@ -7,14 +7,17 @@ type Credit = ALL_CREDITS_QUERYResult[number];
 
 type CreditCardProps = {
   credit: Credit;
+  resolvedCoverSrc?: string | null;
 };
 
-export function CreditCard({ credit }: CreditCardProps) {
-  const coverSrc = credit.coverImage
+export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
+  const sanityCover = credit.coverImage
     ? urlFor(credit.coverImage).width(600).height(600).url()
     : null;
 
-  const coverAlt = `Cover for ${credit.title}${credit.artist ? `by ${credit.artist}` : ""}`;
+  const coverSrc = resolvedCoverSrc ?? sanityCover;
+
+  const coverAlt = `Cover for ${credit.title}${credit.artist ? ` by ${credit.artist}` : ""}`;
 
   return (
     <div className={styles.wrapper}>

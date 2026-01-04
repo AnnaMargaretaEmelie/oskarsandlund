@@ -7,8 +7,12 @@ import { useState } from "react";
 
 type FilterKey = "performance" | "engineer" | "producer" | "all";
 
+type Credit = ALL_CREDITS_QUERYResult[number] & {
+  resolvedCoverSrc?: string | null;
+};
+
 type CreditsListProps = {
-  credits: ALL_CREDITS_QUERYResult;
+  credits: Credit[];
 };
 
 const ENGINEER_ROLES = ["mix", "master", "recording"];
@@ -24,8 +28,7 @@ function shuffleArray<T>(array: T[]) {
 
 export function CreditsList({ credits }: CreditsListProps) {
   const [activeFilter, setActiveFilter] = useState<FilterKey>("all");
-  const [shuffledCredits, setShuffledCredits] =
-    useState<ALL_CREDITS_QUERYResult | null>(null);
+  const [shuffledCredits, setShuffledCredits] = useState<Credit[] | null>(null);
 
   function handleFilterClick(filter: FilterKey) {
     setActiveFilter(filter);
@@ -92,7 +95,11 @@ export function CreditsList({ credits }: CreditsListProps) {
       </div>
       <div className={styles.grid}>
         {creditsToRender.map((credit) => (
-          <CreditCard key={credit._id} credit={credit} />
+          <CreditCard
+            key={credit._id}
+            credit={credit}
+            resolvedCoverSrc={credit.resolvedCoverSrc}
+          />
         ))}
       </div>
     </div>
