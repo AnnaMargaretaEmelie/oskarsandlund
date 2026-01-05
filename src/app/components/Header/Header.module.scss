@@ -2,10 +2,7 @@
 
 .header {
     background-color: t.$color-knob-gray;
-    padding-left: t.$space-lg;
-    padding-right: t.$space-2xl;
-    padding-top: t.$space-lg;
-    padding-bottom: t.$space-md;
+    padding-block: t.$space-md;
 }
 
 .inner {
@@ -17,14 +14,49 @@
 .inner ul {
     display: flex;
     flex-direction: column;
+    gap: t.$space-xs;
     list-style: none;
     font-family: t.$font-decor;
-    font-size: t.$font-size-lg;
+    font-size: t.$font-size-base;
     margin: 0;
     padding: 0;
+    line-height: t.$line-height-tight;
+}
+
+@media (min-width: t.$breakpoint-sm) {
+  .inner ul {
+    font-size: t.$font-size-lg;
+  }
+}
+
+.inner nav {
+    display: none;
+}
+
+@media (min-width: t.$breakpoint-sm) {
+    .inner nav {
+        display: block;
+    }
+}
+
+.inner button {
+    display: inline-flex;
+}
+
+@media (min-width: t.$breakpoint-sm) {
+    .inner button {
+    display: none;
+    }
 }
 
 .siteTitle {
-    font-size: t.$font-size-3xl;
+    font-size: t.$font-size-2_5xl;
     font-family: t.$font-heading;
+    line-height: t.$line-height-tight;
+}
+
+@media (min-width: t.$breakpoint-sm) {
+  .siteTitle {
+    font-size: t.$font-size-3xl;
+  }
 }
