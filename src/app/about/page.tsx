@@ -6,7 +6,6 @@ import {
 } from "@/lib/sanity/sanity.types";
 import { ServicesSection } from "../components/About/ServicesSection/ServicesSection";
 import { ContactSection } from "../components/About/ContactSection/ContactSection";
-import styles from "./aboutPage.module.scss";
 
 export default async function AboutPage() {
   const [siteSettings, services] = await Promise.all([
@@ -14,15 +13,21 @@ export default async function AboutPage() {
     sanityClient.fetch<SERVICES_QUERYResult>(SERVICES_QUERY),
   ]);
   return (
-    <div className={styles.stack}>
-      <div className={styles.page}>
-        <ServicesSection services={services ?? []} />
-        <ContactSection
-          contactEmail={siteSettings?.contactEmail ?? undefined}
-          contactPhone={siteSettings?.contactPhone ?? undefined}
-          contactLocation={siteSettings?.contactLocation ?? undefined}
-        />
-      </div>
-    </div>
+    <>
+      <section className="section" aria-labelledby="about-services-heading">
+        <div className="container">
+          <ServicesSection services={services ?? []} />
+        </div>
+      </section>
+      <section aria-labelledby="about-contact-heading" className="section">
+        <div className="container">
+          <ContactSection
+            contactEmail={siteSettings?.contactEmail ?? undefined}
+            contactPhone={siteSettings?.contactPhone ?? undefined}
+            contactLocation={siteSettings?.contactLocation ?? undefined}
+          />
+        </div>
+      </section>
+    </>
   );
 }

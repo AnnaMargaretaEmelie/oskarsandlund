@@ -27,13 +27,17 @@ export default async function CreditsPage() {
   );
 
   return (
-    <section>
-      <h1>Credits</h1>
-      {credits.length === 0 ? (
-        <p>Inga credits ännu.</p>
-      ) : (
-        <CreditsList credits={creditsWithCover} />
-      )}
+    <section className="section" aria-labelledby="credits-heading">
+      <div className="container">
+        <div className="u-stack-md">
+          <h1 id="credits-heading">Credits</h1>
+          {credits.length === 0 ? (
+            <p>No credits yet.</p>
+          ) : (
+            <CreditsList credits={creditsWithCover} />
+          )}
+        </div>
+      </div>
     </section>
   );
 }

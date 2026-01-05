@@ -10,10 +10,7 @@ export function FeaturedCreditsSection({
   credits,
 }: FeaturedCreditsSectionProps) {
   return (
-    <section
-      aria-labelledby="home-featured-credits-heading"
-      className={styles.section}
-    >
+    <div className="u-stack-md">
       <h2 id="home-featured-credits-heading">Featured credits</h2>
 
       {credits.length === 0 ? (
@@ -25,6 +22,6 @@ export function FeaturedCreditsSection({
           ))}
         </div>
       )}
-    </section>
+    </div>
   );
 }

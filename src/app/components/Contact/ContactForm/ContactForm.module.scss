@@ -1,18 +1,20 @@
 @use "../../../../styles/abstracts/tokens" as t;
 
-.section {
-  max-width: 42rem;
-}
-
 .form {
   display: grid;
-  gap: 1rem;
+  gap: t.$space-md;
+}
+
+.field {
+  display: grid;
+  gap: t.$space-xs;
 }
 
 .input,
 .textarea {
   width: 100%;
-  padding: 0.75rem;
+  padding-block: t.$space-sm;
+  padding-inline: t.$space-md;
   font: inherit;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -42,16 +44,17 @@
 
 .error {
   color: #c0392b;
-  font-size: 0.875rem;
+  font-size: t.$font-size-sm;
 }
 
 .success {
   max-width: 42rem;
   display: grid;
-  gap: 1rem;
+  gap: t.$space-md;
+  padding: t.$space-lg;
 }
 
 .meta {
-  font-size: 0.8rem;
+  font-size: t.$font-size-xs;
   opacity: 0.7;
 }

@@ -7,10 +7,7 @@ type ServicesSectionProps = {
 
 export function ServicesSection({ services }: ServicesSectionProps) {
   return (
-    <section
-      aria-labelledby="about-services-heading"
-      className={styles.section}
-    >
+    <div className="u-stack-sm">
       <h2 id="about-services-heading">Services</h2>
 
       {services.length === 0 && <p>No services yet.</p>}
@@ -24,6 +21,6 @@ export function ServicesSection({ services }: ServicesSectionProps) {
           ))}
         </div>
       )}
-    </section>
+    </div>
   );
 }
