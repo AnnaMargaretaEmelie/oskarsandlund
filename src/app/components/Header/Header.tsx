@@ -1,15 +1,17 @@
 import Link from "next/link";
 import styles from "./Header.module.scss";
+import { MobileNav } from "./MobileNav";
 
 export function Header() {
   return (
     <header className={styles.header}>
-      <div className="container">
+      <div className={`container ${styles.headerContainer}`}>
         <div className={styles.inner}>
           <div className={styles.siteTitle}>Oskar Sandlund</div>
-          <button aria-label="Open menu">KNAPP</button>
-          <nav aria-label="Primary navigation">
-            <ul>
+          <MobileNav />
+
+          <nav className={styles.desktopNav} aria-label="Primary navigation">
+            <ul className={styles.navList}>
               <li>
                 <Link href="/">Home</Link>
               </li>
