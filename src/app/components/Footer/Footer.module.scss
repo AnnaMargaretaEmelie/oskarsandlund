@@ -1,12 +1,35 @@
 @use "../../../styles/abstracts/tokens" as t;
 
 .footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: t.$space-md;
-    background-color: t.$color-knob-gray;
-    font-size: t.$font-size-sm;
-    font-family: t.$font-decor;
+  margin-top: t.$space-xl;
+}
 
+.footerSignal {
+  display: flex;
+  align-items: center;
+  gap: t.$space-xs;
+}
+
+.footerLine {
+  height: 0.6rem;
+  background: t.$color-matrix-blue-dark;
+}
+
+.footerLineLong {
+  flex: 3;                  
+  min-width: 4rem;
+}
+
+.footerLineShort {
+  flex: 1;                   
+  min-width: 2rem;
+}
+
+.footerCopy {
+  font-family: t.$font-body;
+  font-size: t.$font-size-xs;
+  line-height: t.$line-height-tight;
+  color: t.$color-label-gray;
+  white-space: nowrap;
+  margin: 0;
 }
