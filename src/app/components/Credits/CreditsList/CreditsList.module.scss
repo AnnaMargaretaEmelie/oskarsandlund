@@ -2,7 +2,6 @@
 
 .wrapper {
     display: grid;
-    padding: t.$space-md;
     gap: t.$space-md;
 }
 .filters {
@@ -13,7 +12,8 @@
 .grid {
     display: grid;
     gap: t.$space-md;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 170px));
+    justify-content: start;
 }
 .button {
     padding: t.$space-xs t.$space-sm;

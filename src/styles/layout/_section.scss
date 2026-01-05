@@ -1,0 +1,17 @@
+@use "../abstracts/tokens" as t;
+
+.section {
+    padding-block: t.$space-md;
+}
+
+@media (min-width: t.$breakpoint-sm) {
+  .section {
+    padding-block: t.$space-lg;
+  }
+}
+
+@media (min-width: t.$breakpoint-md) {
+    .section {
+        padding-block: t.$space-xl;
+    }
+}

@@ -3,12 +3,16 @@ import styles from "./contactPage.module.scss";
 
 export default function ContactPage() {
   return (
-    <div className={styles.stack}>
-      <div className={styles.page}>
-        <h1>Contact</h1>
-        <p>Give me a ring! Or slide into my contact form below.</p>
-        <ContactForm />
+    <section className="section">
+      <div className="container">
+        <div className="u-stack-md">
+          <h1>Contact</h1>
+          <p>Give me a ring! Or slide into my contact form below.</p>
+          <div className={styles.formWrap}>
+            <ContactForm />
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

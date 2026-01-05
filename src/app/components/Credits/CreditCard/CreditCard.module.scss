@@ -16,16 +16,21 @@
 }
 
 .coverImage {
-  object-fit: cover;
+    object-fit: cover;
 }
 
 .placeholder {
-  width: 100%;
-  height: 100%;
-  background-color: t.$color-matrix-blue;
+    width: 100%;
+    height: 100%;
+    background-color: t.$color-matrix-blue;
 }
 
 .title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
     font-family: t.$font-decor;
     font-size: t.$font-size-md;
 }
@@ -37,8 +42,8 @@
 
 .title,
 .artist {
-  margin: 0;
-  line-height: t.$line-height-tight;
+    margin: 0;
+    line-height: t.$line-height-tight;
 }
 
 .tapTarget {
@@ -73,13 +78,13 @@
 
 }
 .overlay p {
-  margin: 0;
-  font-size: t.$font-size-xs;
+    margin: 0;
+    font-size: t.$font-size-xs;
 }
 
 .overlay a {
-  font-size: t.$font-size-xs;
-  text-decoration: underline;
+    font-size: t.$font-size-xs;
+    text-decoration: underline;
 }
 
 .wrapper:hover .overlay, 
@@ -90,5 +95,5 @@
 
 .wrapper:hover .tapTarget,
 .wrapper:focus-within .tapTarget {
-  pointer-events: none;
+    pointer-events: none;
 }
