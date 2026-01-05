@@ -109,7 +109,7 @@ export function ContactForm() {
   }
   if (isSubmitted) {
     return (
-      <section className={styles.success}>
+      <div className={styles.success}>
         <h3>Thanks!</h3>
         <p>Your message has been sent.</p>
         {receipt?.sanityId && (
@@ -118,12 +118,12 @@ export function ContactForm() {
         <button type="button" className={styles.button} onClick={resetForm}>
           Send me another one!
         </button>
-      </section>
+      </div>
     );
   }
 
   return (
-    <section className={styles.section}>
+    <div className="u-stack-sm">
       <form onSubmit={handleSubmit} className={styles.form}>
         {submitError && <p className={styles.error}>{submitError}</p>}
         <div className={styles.field}>
@@ -190,6 +190,6 @@ export function ContactForm() {
           {isSubmitting ? "Sending..." : "Send"}
         </button>
       </form>
-    </section>
+    </div>
   );
 }

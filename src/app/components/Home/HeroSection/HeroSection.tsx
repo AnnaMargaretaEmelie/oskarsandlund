@@ -1,4 +1,4 @@
-import styles from "./HeroSection.module.scss";
+// import styles from "./HeroSection.module.scss";
 type HeroSectionProps = {
   siteTitle?: string;
   tagline?: string;
@@ -6,9 +6,9 @@ type HeroSectionProps = {
 
 export function HeroSection({ siteTitle, tagline }: HeroSectionProps) {
   return (
-    <section aria-labelledby="home-hero-heading" className={styles.section}>
+    <div className="u-stack-sm">
       <h1 id="home-hero-heading">{siteTitle}</h1>
-      <div>{tagline && <p>{tagline}</p>}</div>
-    </section>
+      {tagline && <p>{tagline}</p>}
+    </div>
   );
 }
