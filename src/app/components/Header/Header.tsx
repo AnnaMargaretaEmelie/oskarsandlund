@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./Header.module.scss";
 import { MobileNav } from "./MobileNav";
+import { NavLink } from "./NavLink";
 
 export function Header() {
   return (
@@ -13,16 +14,16 @@ export function Header() {
           <nav className={styles.desktopNav} aria-label="Primary navigation">
             <ul className={styles.navList}>
               <li>
-                <Link href="/">Home</Link>
+                <NavLink href="/">Home</NavLink>
               </li>
               <li>
-                <Link href="/about">About</Link>
+                <NavLink href="/about">About</NavLink>
               </li>
               <li>
-                <Link href="/credits">Credits</Link>
+                <NavLink href="/credits">Credits</NavLink>
               </li>
               <li>
-                <Link href="/contact">Contact</Link>
+                <NavLink href="/contact">Contact</NavLink>
               </li>
             </ul>
           </nav>

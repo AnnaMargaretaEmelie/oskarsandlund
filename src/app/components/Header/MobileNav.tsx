@@ -1,6 +1,6 @@
 "use client";
 import { useId, useState } from "react";
-import Link from "next/link";
+import { NavLink } from "./NavLink";
 import styles from "./Header.module.scss";
 
 export function MobileNav() {
@@ -34,24 +34,24 @@ export function MobileNav() {
         >
           <ul className={styles.navList}>
             <li>
-              <Link href="/" onClick={close}>
+              <NavLink href="/" onClick={close}>
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link href="/about" onClick={close}>
+              <NavLink href="/about" onClick={close}>
                 About
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link href="/credits" onClick={close}>
+              <NavLink href="/credits" onClick={close}>
                 Credits
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link href="/contact" onClick={close}>
+              <NavLink href="/contact" onClick={close}>
                 Contact
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
