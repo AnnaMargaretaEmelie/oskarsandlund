@@ -7,14 +7,14 @@
 
 .inner {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: t.$space-lg;
 }
 
 .navList {
     display: flex;
     flex-direction: column;
-    gap: t.$space-xs;
+    gap: t.$space-2xs;
     list-style: none;
     font-family: t.$font-decor;
     font-size: t.$font-size-lg;
@@ -45,31 +45,34 @@
   box-shadow: 0 0 6px rgba(255, 0, 0, 0.8);
 }
 
-@media (min-width: t.$breakpoint-sm) {
-  .navList {
-    font-size: t.$font-size-lg;
-  }
-}
-
 .desktopNav {
     display: none;
+    margin-left: auto;
+    padding-left: 0;
 }
 
-@media (min-width: t.$breakpoint-sm) {
+@media (min-width: t.$breakpoint-md) {
     .desktopNav {
         display: block;
+        padding-right: t.$space-lg;
     }
 }
 
 .siteTitle {
-    font-size: t.$font-size-2_5xl;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(2rem, 6vw, 4rem);
     font-family: t.$font-heading;
     line-height: t.$line-height-tight;
+    color: transparent;
+  -webkit-text-stroke: 0.5px t.$color-text;
 }
 
-@media (min-width: t.$breakpoint-sm) {
+@media (min-width: t.$breakpoint-md) {
   .siteTitle {
     font-size: t.$font-size-3xl;
+    -webkit-text-stroke: 1px t.$color-text;
   }
 }
 
@@ -77,10 +80,10 @@
     display: inline-flex;
   flex-direction: column;
   align-items: flex-end;
-
+  margin-left: auto;
 }
 
-@media (min-width: t.$breakpoint-sm) {
+@media (min-width: t.$breakpoint-md) {
   .mobileNav {
     display: none;
   }
@@ -101,26 +104,122 @@
   z-index: 10;
 }
 
+.mobilePanel .navList {
+  padding-left: t.$space-lg;
+}
+
 .menuButton {
   display: inline-flex;
   align-items: center;
+  gap: t.$space-xs;
   justify-content: center;
-  padding: t.$space-xs t.$space-sm;
-  font-family: t.$font-decor;
-  font-size: t.$font-size-base;
-  border-radius: 999px;
-  border: 1px solid t.$color-label-gray;
+  padding: t.$space-sm t.$space-sm;
   background: transparent;
-  color: t.$color-text;
   cursor: pointer;
+  color: t.$color-label-gray;
 }
 
-@media (min-width: t.$breakpoint-sm) {
+@media (min-width: t.$breakpoint-md) {
     .menuButton {
     display: none;
     }
 }
 
+.menuButton[aria-expanded="true"] .menuLed {
+  background: red; // byt till token sen
+  box-shadow: 0 0 6px rgba(255, 0, 0, 0.8);
+}
+
+
+.hamburger {
+  width: 1.25rem;
+  height: 0.75rem;
+  position: relative;
+}
+
+.hamburger::before,
+.hamburger::after,
+.hamburger {
+  display: block;
+  background: currentColor;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  height: 2px;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.hamburger::before {
+  top: -5px;
+}
+
+.hamburger::after {
+  top: 5px;
+}
+
+.menuLed {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+}
+
+
 .headerContainer {
     position: relative;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-xs;
+  min-width: 0;
+  max-width: 85%;
+}
+
+@media (min-width: t.$breakpoint-md) {
+  .brand { max-width: none; }
+}
+
+.signalRow {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap:0;
+}
+
+.signalLine {
+  height: 0.7rem;
+  background: t.$color-matrix-blue;
+}
+
+.signalLineLeft { @extend .signalLine; flex: 1; min-width: 1.5rem; }
+.signalLineRight { @extend .signalLine; flex: 4; min-width: 4rem; }
+
+
+
+.tagline {
+    display: none;
+    flex: 0 0 auto;
+    padding-inline: t.$space-xs;
+  font-family: t.$font-body;
+  font-size: t.$font-size-sm;
+  line-height: t.$line-height-tight;
+  color: t.$color-text-muted;
+  white-space: nowrap;
+}
+
+@media (min-width: t.$breakpoint-sm) {
+  .tagline { display: inline; }
+  .signalRow { gap: 0.01rem; }
 }

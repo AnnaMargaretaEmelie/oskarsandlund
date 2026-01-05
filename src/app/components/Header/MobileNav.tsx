@@ -24,7 +24,8 @@ export function MobileNav() {
         aria-controls={panelId}
         onClick={toggle}
       >
-        {isOpen ? "Close" : "Menu"}
+        <span className={styles.hamburger} aria-hidden="true" />
+        <span className={styles.menuLed} aria-hidden="true" />
       </button>
       {isOpen && (
         <nav
