@@ -4,28 +4,131 @@
     display: grid;
     gap: t.$space-md;
 }
-.filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: t.$space-md;
-}
+
 .grid {
     display: grid;
     gap: t.$space-md;
     grid-template-columns: repeat(auto-fill, minmax(150px, 170px));
     justify-content: start;
 }
-.button {
-    padding: t.$space-xs t.$space-sm;
-    border-radius: 999px;
-    border: 1px solid t.$color-label-gray;
-    background: transparent;
-    color: t.$color-text;
+.filters {
+   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+  gap: t.$space-md;
+  align-items: start;
 }
-.active {
-    background-color: t.$color-knob-gray;
+
+.filterItem {
+    display: grid;
+  justify-items: center;
+  gap: t.$space-xs;
 }
-.reset {
-    background-color: t.$color-knob-gray;
-    color: white;
+
+.filterLabel {
+  font-family: t.$font-decor;
+  font-size: t.$font-size-sm;
+  line-height: t.$line-height-tight;
+  text-align: center;
 }
+
+.led {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+}
+
+.filterItem[data-active="true"] .led {
+  background: red; /* byt till token sen */
+  box-shadow: 0 0 6px rgba(255, 0, 0, 0.8);
+}
+
+.filterButton {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  border: 1px solid t.$color-label-gray;
+  background: t.$color-knob-gray;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: t.$color-text;
+}
+
+.knob {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  border: 1px solid t.$color-label-gray;
+  background: transparent;
+}
+
+.filterItem[data-active="true"] .filterButton {
+  border-color: t.$color-text-muted;
+}
+
+.filterButton:focus-visible,
+.actionButton:focus-visible,
+.resetButton:focus-visible {
+  outline: 2px solid t.$color-electric-cyan;
+  outline-offset: 2px;
+}
+
+.actionButton {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  border: 1px solid t.$color-label-gray;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: t.$color-text;
+}
+
+.actionIcon {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 3px;
+  border: 1px solid t.$color-label-gray;
+}
+
+.resetButton {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  border: 1px solid t.$color-label-gray;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0.75;
+  color: t.$color-text;
+}
+
+.resetButton:hover {
+  opacity: 1;
+}
+
+.resetIcon {
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 10px solid t.$color-text;
+  position: relative;
+}
+
+.resetIcon::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: -7px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 10px solid t.$color-text;
+}
+
