@@ -1,6 +1,116 @@
 @use "../../../../styles/abstracts/tokens" as t;
 
 .grid {
-    display: grid;
-    gap: t.$space-md;
+  display: grid;
+  gap: t.$space-md;
+}
+
+@media (min-width: t.$breakpoint-md) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// .badge {
+//   position: absolute;
+//   top: t.$space-xs;
+//   left: t.$space-xs;
+
+//   padding: 0.15rem 0.45rem;
+
+//   font-family: t.$font-decor;
+//   font-size: t.$font-size-xs;
+//   letter-spacing: 0.06em;
+//   text-transform: uppercase;
+
+//   color: t.$color-synth-black;
+//   background: rgba(92, 255, 143, 0.18);
+
+//   border: rgba(92, 255, 143, 0.35);
+//   border-radius: 0.25rem;
+// }
+
+
+.labelCard {
+  position: relative;
+  padding: t.$space-lg;
+  border-radius: 0.5rem;
+  max-width: 20rem;  
+  width: 100%;
+  margin-inline: auto;
+  aspect-ratio: 4 / 3;
+
+  background: color-mix(
+    in srgb,
+    t.$color-label-gray 60%,
+    white 40%
+  );
+  color: t.$color-synth-black;
+
+  border: 1px solid rgba(0,0,0,0.15);
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+
+
+  transform: rotate(-0.6deg);
+}
+
+.labelCard:nth-child(even) {
+  transform: rotate(0.5deg);
+}
+
+.labelCard::before {
+  content: "";
+  position: absolute;
+  inset: t.$space-lg;
+  pointer-events: none;
+  border-radius: 0.35rem;
+
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15) 0px,
+    rgba(0,0,0,0.15) 1px,
+    transparent 1px,
+    transparent 22px
+  );
+  opacity: 0.35;
+}
+
+.labelCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+
+  background-image: repeating-radial-gradient(
+    circle at 0 0,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  opacity: 0.05;
+}
+
+.labelCard > * {
+  position: relative;
+  z-index: 1;
+}
+
+.labelTitle {
+  margin: 0;
+  font-family: t.$font-decor;
+  font-size: t.$font-size-lg;
+  line-height: t.$line-height-tight;
+}
+
+.labelText {
+  margin: 0;
+  font-family: t.$font-body;
+  font-size: t.$font-size-base;
+  line-height: t.$line-height-relaxed;
+  color: rgba(0,0,0,0.85);
 }
