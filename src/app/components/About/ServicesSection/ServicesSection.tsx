@@ -14,10 +14,7 @@ export function ServicesSection({ services }: ServicesSectionProps) {
       {services.length > 0 && (
         <div className={styles.grid}>
           {services.map((service) => (
-            <article
-              key={service._id}
-              className="u-label u-label--narrow u-label--tilt-left"
-            >
+            <article key={service._id} className="u-label u-label--narrow">
               {service.title && (
                 <h3 className={styles.labelTitle}>{service.title}</h3>
               )}
