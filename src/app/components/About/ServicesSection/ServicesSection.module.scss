@@ -1,6 +1,42 @@
 @use "../../../../styles/abstracts/tokens" as t;
 
 .grid {
-    display: grid;
-    gap: t.$space-md;
+  display: grid;
+  gap: t.$space-md;
+}
+
+.grid > * {
+  transform: rotate(-0.6deg);
+  transform-origin: 20% 20%;
+}
+
+.grid > *:nth-child(even) {
+  transform: rotate(0.5deg);
+  transform-origin: 80% 20%;
+}
+
+@media (min-width: t.$breakpoint-md) {
+  .grid > * { transform: rotate(-0.3deg); }
+  .grid > *:nth-child(even) { transform: rotate(0.25deg); }
+}
+
+@media (min-width: t.$breakpoint-md) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.labelTitle {
+  margin: 0;
+  font-family: t.$font-decor;
+  font-size: t.$font-size-lg;
+  line-height: t.$line-height-tight;
+}
+
+.labelText {
+  margin: 0;
+  font-family: t.$font-body;
+  font-size: t.$font-size-base;
+  line-height: t.$line-height-relaxed;
+  color: rgba(0,0,0,0.85);
 }

@@ -1,15 +1,133 @@
 @use "../styles/abstracts/tokens" as t;
 
-.page {
-  margin: 0 auto;
-  max-width: 1200px;
-  
-  padding-inline: t.$space-lg;
-  padding-block: t.$space-md;
+.hero {
+  display: grid;
+  gap: t.$space-lg;
 }
 
-.stack {
-  display: flex;
-  flex-direction: column;
-  gap: t.$space-lg;
+@media (min-width: t.$breakpoint-md) {
+  .hero {
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: start;
+  }
+}
+
+.heroImage {
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 0.2rem;
+  overflow: hidden;
+  position: relative;
+
+  background: rgba(0,0,0,0.25);
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+
+  aspect-ratio: 16 / 10;
+}
+
+.heroImage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.heroImagePlaceholder {
+  width: 100%;
+  height: 100%;
+
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.05) 1px,
+      transparent 1px,
+      transparent 12px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.04) 0px,
+      rgba(255,255,255,0.04) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+  opacity: 0.6;
+}
+
+@media (min-width: t.$breakpoint-md) {
+  .heroImage {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.heroImg {
+  object-fit: cover;
+}
+
+.featuredBox {
+  position: relative;
+  border-radius: 0.2rem;
+  padding: t.$space-lg;
+  overflow: hidden;
+  background-color: t.$color-knob-gray;
+}
+
+.featuredBox::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
+
+  opacity: 0.18;              
+  mix-blend-mode: overlay;    
+}
+
+.featuredCta {
+  position: absolute;
+  bottom: t.$space-md;
+  right: t.$space-md;
+  z-index: 2;
+  
+}
+
+.featuredCtaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-xs;
+
+  padding: 0.45rem 0.7rem;
+
+  font-family: t.$font-decor;
+  font-size: t.$font-size-sm;
+  text-decoration: none;
+
+  color: t.$color-text;
+  background: rgba(0,0,0,0.45);
+
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 0.4rem;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 4px 10px rgba(0,0,0,0.4);
+
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.featuredCtaButton:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 6px 14px rgba(0,0,0,0.45);
+}
+
+.featuredCtaButton:focus-visible {
+  outline: 2px solid t.$color-electric-cyan;
+  outline-offset: 2px;
 }
