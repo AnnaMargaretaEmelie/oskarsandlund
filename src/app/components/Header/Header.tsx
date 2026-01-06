@@ -25,8 +25,8 @@ export function Header() {
                 </span>
                 <span className={styles.signalLineRight} />
               </div>
-              <MobileNavButton />
             </div>
+            <MobileNavButton />
 
             <nav className={styles.desktopNav} aria-label="Primary navigation">
               <ul className={styles.navList}>

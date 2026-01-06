@@ -7,8 +7,22 @@
 
 .inner {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: t.$space-lg;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-xs;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: flex-start;
+
+}
+
+@media (min-width: t.$breakpoint-md) {
+  .brand { max-width: none; }
 }
 
 .navList {
@@ -54,8 +68,9 @@
 
 .desktopNav {
     display: none;
-    margin-left: auto;
     padding-left: 0;
+    margin-left: auto;
+
 }
 
 @media (min-width: t.$breakpoint-md) {
@@ -66,7 +81,7 @@
 }
 
 .siteTitle {
-  max-width: 14ch;
+  max-width: 18ch;
     font-size: clamp(2.4rem, 7vw, 4rem);
     font-family: t.$font-heading;
     line-height: t.$line-height-tight;
@@ -82,10 +97,10 @@
 }
 
 .mobileNav {
-    display: inline-flex;
-  flex-direction: column;
-  align-items: flex-end;
-  position: relative;
+  flex: 0 0 auto;
+  margin-left: auto;
+  align-self: flex-start; 
+  padding-top: 0.1rem; 
 }
 
 @media (min-width: t.$breakpoint-md) {
@@ -132,16 +147,21 @@
 }
 
 .menuButton {
-  display: inline-flex;
-  align-items: center;
-  gap: t.$space-xs;
-  justify-content: center;
-  padding: t.$space-sm t.$space-sm;
-  background: transparent;
-  cursor: pointer;
-  color: t.$color-label-gray;
-}
+  position: relative;
 
+  width: 2.75rem;
+  height: 2.75rem;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 0.2rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: transparent;
+  color: t.$color-label-gray;
+
+  cursor: pointer;
+}
 @media (min-width: t.$breakpoint-md) {
     .menuButton {
     display: none;
@@ -158,6 +178,7 @@
   width: 1.25rem;
   height: 0.75rem;
   position: relative;
+  background: currentColor;
 }
 
 .hamburger::before,
@@ -182,7 +203,7 @@
 }
 
 .hamburger::before {
-  top: -5px;
+  top: -6px;
 }
 
 .hamburger::after {
@@ -190,29 +211,18 @@
 }
 
 .menuLed {
-  width: 0.5rem;
-  height: 0.5rem;
+  position:absolute;
+   top: 0.2rem;
+  right: 0.2rem;
+  width: 0.35rem;
+  height: 0.35rem;
   border-radius: 50%;
   background: transparent;
   box-shadow: none;
 }
 
-
 .headerContainer {
     position: relative;
-    padding-right: t.$space-2xl;
-}
-
-.brand {
-  display: flex;
-  flex-direction: column;
-  gap: t.$space-xs;
-  min-width: 0;
-  max-width: 85%;
-}
-
-@media (min-width: t.$breakpoint-md) {
-  .brand { max-width: none; }
 }
 
 .signalRow {
@@ -220,6 +230,8 @@
   align-items: center;
   min-width: 0;
   gap:0;
+  width: 100%;
+  max-width: clamp(18rem, 65vw, 37rem);
 }
 
 .signalLine {
@@ -228,10 +240,8 @@
   min-width: 0;
 }
 
-.signalLineLeft { @extend .signalLine; flex: 1 1 2.5rem; }
-.signalLineRight { @extend .signalLine; flex: 3 1 4rem; }
-
-
+.signalLineLeft { @extend .signalLine; flex: 0 0 clamp(2.5rem, 8vw, 5rem); }
+.signalLineRight { @extend .signalLine; flex: 1 1 auto; }
 
 .tagline {
     display: none;
