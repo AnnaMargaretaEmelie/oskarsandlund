@@ -13,6 +13,7 @@ import { HeroSection } from "./components/Home/HeroSection/HeroSection";
 import { BioSection } from "./components/Home/BioSection/BioSection";
 import { FeaturedCreditsSection } from "./components/Home/FeaturedCreditsSection/FeaturedCreditsSection";
 import styles from "./homePage.module.scss";
+import Image from "next/image";
 
 export default async function Home() {
   const [siteSettings, bio, featuredCredits] = await Promise.all([
@@ -32,7 +33,16 @@ export default async function Home() {
               siteTitle={siteSettings?.siteTitle ?? "Oskar Sandlund"}
               tagline={siteSettings?.tagline ?? undefined}
             />
-            {/* här kommer hero-bild sen*/}
+            <div className={styles.heroImage}>
+              <Image
+                src="/images/studio-pics/fisheye-studio.jpeg"
+                alt="The studio, packed with gears."
+                fill
+                className={styles.heroImg}
+                sizes="(min-width: 900px) 40vw, 100vw"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
