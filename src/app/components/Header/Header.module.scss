@@ -45,6 +45,13 @@
   box-shadow: 0 0 6px rgba(255, 0, 0, 0.8);
 }
 
+.mobilePanel .navList a[aria-current="page"]::before {
+  left: auto;
+  right: 0.75rem; 
+  top: 50%;
+  transform: translateY(-50%);          /* LED inne i “knappytan” */
+}
+
 .desktopNav {
     display: none;
     margin-left: auto;
@@ -78,7 +85,7 @@
     display: inline-flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-left: auto;
+  position: relative;
 }
 
 @media (min-width: t.$breakpoint-md) {
@@ -88,22 +95,40 @@
 }
 
 .mobilePanel {
-    position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%; 
   width: 100%;
+  padding-top: t.$space-md;
   margin-top: t.$space-sm;
-
-  padding: t.$space-md;
-  background-color: t.$color-knob-gray;
-  border: 1px solid t.$color-label-gray;
-
+  border-top: 1px dotted t.$color-label-gray;
   z-index: 10;
 }
 
 .mobilePanel .navList {
-  padding-left: t.$space-lg;
+  margin-left: auto;
+  padding-right: t.$space-lg;
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-sm;
+}
+
+.mobilePanel .navList li {
+  border-top: 1px dotted rgba(255,255,255,0.10);
+}
+
+.mobilePanel .navList li:first-child {
+  border-top: none;
+}
+
+.mobilePanel .navList a {
+ display: block;
+  padding: t.$space-xs t.$space-lg;
+  padding-right: 2.25rem;
+  text-align: right;
+  border-radius: 0.5rem;
+}
+
+.mobilePanel .navList a:focus-visible {
+  outline: 2px solid t.$color-electric-cyan;
+  outline-offset: 2px;
 }
 
 .menuButton {
