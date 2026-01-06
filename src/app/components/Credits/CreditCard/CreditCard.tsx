@@ -34,8 +34,10 @@ export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
           <div className={styles.placeholder} aria-hidden="true" />
         )}
         <button
+          type="button"
           className={styles.tapTarget}
           aria-label={`Show details for ${credit.title}`}
+          onClick={(e) => e.currentTarget.focus()}
         />
         <div className={styles.overlay}>
           {credit.roles?.length ? (
