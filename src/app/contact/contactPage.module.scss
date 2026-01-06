@@ -1,7 +1,21 @@
 @use "../../styles/abstracts/tokens" as t;
 
-
 .formWrap {
   max-width: 42rem;
   margin-inline: 0;
+
+  position: relative;
+  border-radius: 0.2rem;
+  padding: t.$space-lg;
+
+  background-color: t.$color-knob-gray;
+
+  box-shadow:
+    0 14px 30px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    inset 0 -10px 24px rgba(0,0,0,0.35);
+
+  overflow: hidden;
 }
+
+
