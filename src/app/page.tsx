@@ -64,7 +64,10 @@ export default async function Home() {
         aria-labelledby="home-featured-credits-heading"
       >
         <div className="container">
-          <FeaturedCreditsSection credits={featuredCredits ?? []} />
+          <div className={`${styles.featuredBox} bg-grid--light`}>
+            <FeaturedCreditsSection credits={featuredCredits ?? []} />{" "}
+            <button>All credits</button>
+          </div>
         </div>
       </section>
     </>
