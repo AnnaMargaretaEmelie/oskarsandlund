@@ -1,10 +1,5 @@
 @use "../styles/abstracts/tokens" as t;
 
-.page {
-  display: grid;
-  gap: t.$space-2xl;
-}
-
 .hero {
   display: grid;
   gap: t.$space-lg;
@@ -12,46 +7,7 @@
 
 @media (min-width: t.$breakpoint-md) {
   .hero {
-    grid-template-columns: 1.2fr 0.8fr; // text lite större än ev. bild
+    grid-template-columns: 1.2fr 0.8fr;
     align-items: start;
   }
-}
-
-.homeLabel {
-  /* “etikettkort” – återanvänd samma stil som i services */
-  position: relative;
-  padding: t.$space-lg;
-  border-radius: 0.5rem;
-
-  background: rgba(255,255,255,0.82);
-  color: t.$color-synth-black;
-  border: 1px solid rgba(0,0,0,0.15);
-
-  box-shadow:
-    0 10px 24px rgba(0,0,0,0.25),
-    inset 0 1px 0 rgba(255,255,255,0.5);
-
-  transform: rotate(-0.6deg);
-
-  max-width: 23rem;
-}
-.homeLabel::before {
-  content: "";
-  position: absolute;
-  inset: t.$space-lg;
-  pointer-events: none;
-  border-radius: 0.35rem;
-
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.12) 0px,
-    rgba(0,0,0,0.12) 1px,
-    transparent 1px,
-    transparent 22px
-  );
-  opacity: 0.35;
-}
-.homeLabel > * {
-  position: relative;
-  z-index: 1;
 }

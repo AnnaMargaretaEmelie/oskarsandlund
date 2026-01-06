@@ -21,42 +21,42 @@ export default async function Home() {
     sanityClient.fetch<FEATURED_CREDITS_QUERYResult>(FEATURED_CREDITS_QUERY),
   ]);
   return (
-    <div>
-      <div className={styles.page}>
-        <section
-          className="section bg-grid bg-grain"
-          aria-labelledby="home-hero-heading"
-        >
-          <div className="container">
-            <div className={styles.hero}>
-              <HeroSection
-                siteTitle={siteSettings?.siteTitle ?? "Oskar Sandlund"}
-                tagline={siteSettings?.tagline ?? undefined}
-              />
-            </div>
+    <>
+      <section
+        className="section bg-grid bg-grain"
+        aria-labelledby="home-hero-heading"
+      >
+        <div className="container">
+          <div className={styles.hero}>
+            <HeroSection
+              siteTitle={siteSettings?.siteTitle ?? "Oskar Sandlund"}
+              tagline={siteSettings?.tagline ?? undefined}
+            />
+            {/* här kommer hero-bild sen*/}
           </div>
-        </section>
-        <section className="section" aria-labelledby="home-bio-heading">
-          <div className="container">
-            <div className="u-label u-label--tilt-left u-label--narrow">
-              <BioSection
-                name={bio?.name ?? undefined}
-                profession={bio?.profession ?? undefined}
-                shortBio={bio?.shortBio ?? undefined}
-              />
-            </div>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        <section
-          className="section"
-          aria-labelledby="home-featured-credits-heading"
-        >
-          <div className="container">
-            <FeaturedCreditsSection credits={featuredCredits ?? []} />
+      <section className="section" aria-labelledby="home-bio-heading">
+        <div className="container">
+          <div className="u-label u-label--tilt-left u-label--narrow">
+            <BioSection
+              name={bio?.name ?? undefined}
+              profession={bio?.profession ?? undefined}
+              shortBio={bio?.shortBio ?? undefined}
+            />
           </div>
-        </section>
-      </div>
-    </div>
+        </div>
+      </section>
+
+      <section
+        className="section"
+        aria-labelledby="home-featured-credits-heading"
+      >
+        <div className="container">
+          <FeaturedCreditsSection credits={featuredCredits ?? []} />
+        </div>
+      </section>
+    </>
   );
 }
