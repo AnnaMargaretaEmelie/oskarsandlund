@@ -76,20 +76,29 @@
     transition: opacity 80ms linear;
     background: rgba(0, 0, 0, 0.72);
     backdrop-filter: blur(1px);
-
+    pointer-events: none;
 }
+
 .overlay p {
     margin: 0;
 }
-
-.wrapper:hover .overlay, 
+ 
 .wrapper:focus-within .overlay {
     opacity: 1;
+    pointer-events: auto;
 }
 
-.wrapper:hover .tapTarget,
-.wrapper:focus-within .tapTarget {
+@media (hover: hover) and (pointer: fine) {
+  .wrapper:hover .overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .wrapper:hover .tapTarget {
     pointer-events: none;
+  }
 }
 
 .roles {
