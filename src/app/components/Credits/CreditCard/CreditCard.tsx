@@ -38,18 +38,35 @@ export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
           aria-label={`Show details for ${credit.title}`}
         />
         <div className={styles.overlay}>
-          <p>{credit.roles?.join(", ")}</p>
-          {credit.year && <p>{credit.year}</p>}
-          {credit.spotifyUrl && (
-            <a
-              href={credit.spotifyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Listen to ${credit.title} on Spotify`}
-            >
-              Listen on Spotify
-            </a>
+          {credit.roles?.length ? (
+            <p className={styles.roles}>{credit.roles.join(" | ")}</p>
+          ) : (
+            <p className={styles.rolesMuted}>—</p>
           )}
+
+          <div className={styles.overlayFooter}>
+            {credit.year && <p className={styles.year}>{credit.year}</p>}
+
+            {credit.spotifyUrl && (
+              <a
+                href={credit.spotifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.spotifyButton}
+                aria-label={`Listen to ${credit.title} on Spotify`}
+              >
+                <svg
+                  className={styles.spotifyIcon}
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M12 0.5C5.648 0.5.5 5.648.5 12S5.648 23.5 12 23.5 23.5 18.352 23.5 12 18.352.5 12 .5Zm5.29 16.94a.9.9 0 0 1-1.24.3c-3.4-2.08-7.68-2.55-12.71-1.39a.9.9 0 1 1-.4-1.75c5.5-1.26 10.24-.72 14.05 1.61.43.26.56.82.3 1.23Zm1.78-3.57a1.05 1.05 0 0 1-1.45.35c-3.9-2.4-9.86-3.1-14.5-1.69a1.05 1.05 0 1 1-.61-2.01c5.31-1.61 11.9-.83 16.4 1.95.49.3.64.95.34 1.4Zm.15-3.71c-4.68-2.78-12.4-3.04-16.88-1.68a1.2 1.2 0 1 1-.7-2.29c5.14-1.56 13.68-1.25 19.05 1.94a1.2 1.2 0 0 1-1.24 2.03h-.23Z" />
+                </svg>
+                Spotify
+              </a>
+            )}
+          </div>
         </div>
       </div>
       <p className={styles.title}>{credit.title}</p>
