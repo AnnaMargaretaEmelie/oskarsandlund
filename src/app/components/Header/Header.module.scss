@@ -7,8 +7,22 @@
 
 .inner {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: t.$space-lg;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-xs;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: flex-start;
+
+}
+
+@media (min-width: t.$breakpoint-md) {
+  .brand { max-width: none; }
 }
 
 .navList {
@@ -45,10 +59,18 @@
   box-shadow: 0 0 6px rgba(255, 0, 0, 0.8);
 }
 
+.mobilePanel .navList a[aria-current="page"]::before {
+  left: auto;
+  right: 0.75rem; 
+  top: 50%;
+  transform: translateY(-50%);          /* LED inne i “knappytan” */
+}
+
 .desktopNav {
     display: none;
-    margin-left: auto;
     padding-left: 0;
+    margin-left: auto;
+
 }
 
 @media (min-width: t.$breakpoint-md) {
@@ -59,10 +81,8 @@
 }
 
 .siteTitle {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: clamp(2rem, 6vw, 4rem);
+  max-width: 18ch;
+    font-size: clamp(2.4rem, 7vw, 4rem);
     font-family: t.$font-heading;
     line-height: t.$line-height-tight;
     color: transparent;
@@ -77,10 +97,10 @@
 }
 
 .mobileNav {
-    display: inline-flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex: 0 0 auto;
   margin-left: auto;
+  align-self: flex-start; 
+  padding-top: 0.1rem; 
 }
 
 @media (min-width: t.$breakpoint-md) {
@@ -90,35 +110,58 @@
 }
 
 .mobilePanel {
-    position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%; 
   width: 100%;
+  padding-top: t.$space-md;
   margin-top: t.$space-sm;
-
-  padding: t.$space-md;
-  background-color: t.$color-knob-gray;
-  border: 1px solid t.$color-label-gray;
-
+  border-top: 1px dotted t.$color-label-gray;
   z-index: 10;
 }
 
 .mobilePanel .navList {
-  padding-left: t.$space-lg;
+  margin-left: auto;
+  padding-right: t.$space-lg;
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-sm;
+}
+
+.mobilePanel .navList li {
+  border-top: 1px dotted rgba(255,255,255,0.10);
+}
+
+.mobilePanel .navList li:first-child {
+  border-top: none;
+}
+
+.mobilePanel .navList a {
+ display: block;
+  padding: t.$space-xs t.$space-lg;
+  padding-right: 2.25rem;
+  text-align: right;
+  border-radius: 0.5rem;
+}
+
+.mobilePanel .navList a:focus-visible {
+  outline: 2px solid t.$color-electric-cyan;
+  outline-offset: 2px;
 }
 
 .menuButton {
-  display: inline-flex;
-  align-items: center;
-  gap: t.$space-xs;
-  justify-content: center;
-  padding: t.$space-sm t.$space-sm;
-  background: transparent;
-  cursor: pointer;
-  color: t.$color-label-gray;
-}
+  position: relative;
 
+  width: 2.75rem;
+  height: 2.75rem;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 0.2rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: transparent;
+  color: t.$color-label-gray;
+
+  cursor: pointer;
+}
 @media (min-width: t.$breakpoint-md) {
     .menuButton {
     display: none;
@@ -135,6 +178,7 @@
   width: 1.25rem;
   height: 0.75rem;
   position: relative;
+  background: currentColor;
 }
 
 .hamburger::before,
@@ -159,7 +203,7 @@
 }
 
 .hamburger::before {
-  top: -5px;
+  top: -6px;
 }
 
 .hamburger::after {
@@ -167,28 +211,18 @@
 }
 
 .menuLed {
-  width: 0.5rem;
-  height: 0.5rem;
+  position:absolute;
+   top: 0.2rem;
+  right: 0.2rem;
+  width: 0.35rem;
+  height: 0.35rem;
   border-radius: 50%;
   background: transparent;
   box-shadow: none;
 }
 
-
 .headerContainer {
     position: relative;
-}
-
-.brand {
-  display: flex;
-  flex-direction: column;
-  gap: t.$space-xs;
-  min-width: 0;
-  max-width: 85%;
-}
-
-@media (min-width: t.$breakpoint-md) {
-  .brand { max-width: none; }
 }
 
 .signalRow {
@@ -196,17 +230,18 @@
   align-items: center;
   min-width: 0;
   gap:0;
+  width: 100%;
+  max-width: clamp(18rem, 65vw, 37rem);
 }
 
 .signalLine {
   height: 0.7rem;
   background: t.$color-matrix-blue;
+  min-width: 0;
 }
 
-.signalLineLeft { @extend .signalLine; flex: 1; min-width: 1.5rem; }
-.signalLineRight { @extend .signalLine; flex: 4; min-width: 4rem; }
-
-
+.signalLineLeft { @extend .signalLine; flex: 0 0 clamp(2.5rem, 8vw, 5rem); }
+.signalLineRight { @extend .signalLine; flex: 1 1 auto; }
 
 .tagline {
     display: none;
