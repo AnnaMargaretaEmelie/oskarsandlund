@@ -1,7 +1,7 @@
+"use client";
 import styles from "./CreditCard.module.scss";
 import { ALL_CREDITS_QUERYResult } from "@/lib/sanity/sanity.types";
 import Image from "next/image";
-import { urlFor } from "@/lib/sanity/sanity.image";
 
 type Credit = ALL_CREDITS_QUERYResult[number];
 
@@ -11,11 +11,7 @@ type CreditCardProps = {
 };
 
 export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
-  const sanityCover = credit.coverImage
-    ? urlFor(credit.coverImage).width(600).height(600).url()
-    : null;
-
-  const coverSrc = resolvedCoverSrc ?? sanityCover;
+  const coverSrc = resolvedCoverSrc ?? null;
 
   const coverAlt = `Cover for ${credit.title}${credit.artist ? ` by ${credit.artist}` : ""}`;
 

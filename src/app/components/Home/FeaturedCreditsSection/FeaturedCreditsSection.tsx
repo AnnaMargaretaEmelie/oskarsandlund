@@ -2,8 +2,12 @@ import { FEATURED_CREDITS_QUERYResult } from "@/lib/sanity/sanity.types";
 import { CreditCard } from "../../Credits/CreditCard/CreditCard";
 import styles from "./FeaturedCreditsSection.module.scss";
 
+type FeaturedCredit = FEATURED_CREDITS_QUERYResult[number] & {
+  resolvedCoverSrc?: string | null;
+};
+
 type FeaturedCreditsSectionProps = {
-  credits: FEATURED_CREDITS_QUERYResult;
+  credits: FeaturedCredit[];
 };
 
 export function FeaturedCreditsSection({
@@ -18,7 +22,11 @@ export function FeaturedCreditsSection({
       ) : (
         <div className={styles.grid}>
           {credits.map((credit) => (
-            <CreditCard key={credit._id} credit={credit} />
+            <CreditCard
+              key={credit._id}
+              credit={credit}
+              resolvedCoverSrc={credit.resolvedCoverSrc}
+            />
           ))}
         </div>
       )}
