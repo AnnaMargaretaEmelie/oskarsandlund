@@ -1,0 +1,64 @@
+@use "../abstracts/tokens" as t;
+
+.u-label {
+  position: relative;
+  width: 100%;
+
+  padding: t.$space-lg;
+  border-radius: 0.5rem;
+
+  background: rgba(255,255,255,0.82);
+  color: t.$color-synth-black;
+  border: 1px solid rgba(0,0,0,0.15);
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.u-label::before {
+  content: "";
+  position: absolute;
+  inset: t.$space-lg;
+  pointer-events: none;
+  border-radius: 0.35rem;
+
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.12) 0px,
+    rgba(0,0,0,0.12) 1px,
+    transparent 1px,
+    transparent 22px
+  );
+  opacity: 0.35;
+}
+
+.u-label::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+
+  background-image: repeating-radial-gradient(
+    circle at 0 0,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  opacity: 0.05;
+}
+
+.u-label > * {
+  position: relative;
+  z-index: 1;
+}
+
+.u-label--tilt-left { transform: rotate(-0.6deg); }
+.u-label--tilt-right { transform: rotate(0.5deg); }
+
+.u-label--narrow {
+  max-width: 23rem;
+  margin-inline: auto;
+}
