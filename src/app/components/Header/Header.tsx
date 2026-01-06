@@ -1,6 +1,7 @@
 import styles from "./Header.module.scss";
 import { MobileNav } from "./MobileNav";
 import { NavLink } from "./NavLink";
+import Link from "next/link";
 
 export function Header() {
   return (
@@ -8,7 +9,9 @@ export function Header() {
       <div className={`container ${styles.headerContainer}`}>
         <div className={styles.inner}>
           <div className={styles.brand}>
-            <div className={styles.siteTitle}>Oskar Sandlund</div>
+            <Link href="/" className={styles.siteTitle}>
+              Oskar Sandlund
+            </Link>
 
             <div className={styles.signalRow} aria-hidden="true">
               <span className={styles.signalLineLeft} />
