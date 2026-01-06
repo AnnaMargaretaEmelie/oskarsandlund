@@ -87,3 +87,47 @@
   opacity: 0.18;              
   mix-blend-mode: overlay;    
 }
+
+.featuredCta {
+  position: absolute;
+  bottom: t.$space-md;
+  right: t.$space-md;
+  z-index: 2;
+  
+}
+
+.featuredCtaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-xs;
+
+  padding: 0.45rem 0.7rem;
+
+  font-family: t.$font-decor;
+  font-size: t.$font-size-sm;
+  text-decoration: none;
+
+  color: t.$color-text;
+  background: rgba(0,0,0,0.45);
+
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 0.4rem;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 4px 10px rgba(0,0,0,0.4);
+
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.featuredCtaButton:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 6px 14px rgba(0,0,0,0.45);
+}
+
+.featuredCtaButton:focus-visible {
+  outline: 2px solid t.$color-electric-cyan;
+  outline-offset: 2px;
+}
