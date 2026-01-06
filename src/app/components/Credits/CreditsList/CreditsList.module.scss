@@ -2,30 +2,189 @@
 
 .wrapper {
     display: grid;
-    gap: t.$space-md;
+    gap: t.$space-2xl;
 }
-.filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: t.$space-md;
-}
+
 .grid {
     display: grid;
     gap: t.$space-md;
     grid-template-columns: repeat(auto-fill, minmax(150px, 170px));
     justify-content: start;
 }
-.button {
-    padding: t.$space-xs t.$space-sm;
-    border-radius: 999px;
-    border: 1px solid t.$color-label-gray;
-    background: transparent;
-    color: t.$color-text;
-}
-.active {
+.filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+    gap: t.$space-md;
+    align-items: start;
     background-color: t.$color-knob-gray;
+    padding: t.$space-lg;
+    border-radius: 0.2rem;
+
+    box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    inset 0 -1px 0 rgba(0,0,0,0.6);
 }
-.reset {
-    background-color: t.$color-knob-gray;
-    color: white;
+
+.filterItem {
+    display: grid;
+    justify-items: center;
+    gap: t.$space-xs;
 }
+
+.filterLabel {
+  font-family: t.$font-decor;
+  font-size: t.$font-size-sm;
+  line-height: t.$line-height-tight;
+  text-align: center;
+}
+
+.led {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+}
+
+.filterItem[data-active="true"] .led {
+  background: red; /* byt till token sen */
+  box-shadow: 0 0 6px rgba(255, 0, 0, 0.8);
+}
+
+.knob {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 999px;
+ background:
+    radial-gradient(circle at 30% 28%, rgba(255,255,255,0.55), rgba(255,255,255,0.18) 28%, rgba(0,0,0,0.22) 70%),
+    linear-gradient(to bottom, rgba(255,255,255,0.18), rgba(0,0,0,0.25));
+
+  border: 1px solid rgba(255,255,255,0.22);
+
+  box-shadow:
+    0 3px 0 rgba(0,0,0,0.65),
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    inset 0 -2px 5px rgba(0,0,0,0.7);
+
+  transform: translateY(-2px);
+  position: relative;
+}
+
+.knob::after {
+  content: "";
+  position: absolute;
+  top: 0.22rem;
+  left: 0.28rem;
+  width: 0.7rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.22);
+  transform: rotate(-18deg);
+}
+
+
+
+.filterItem[data-active="true"] .filterButton {
+    box-shadow:
+    inset 0 2px 2px rgba(0,0,0,0.8);
+}
+
+.filterItem[data-active="true"] .knob {
+  transform: translateY(-1px);
+}
+
+.filterButton,
+.actionButton,
+.resetButton {
+    border: 0.5px solid rgba(255,255,255,0.16);
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.35rem;
+      background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.06),
+    rgba(0,0,0,0.35)
+  );
+
+  box-shadow:
+    0 2px 0 rgba(0,0,0,0.65),
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    inset 0 -2px 4px rgba(0,0,0,0.7);
+    display: grid;
+    place-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+
+.filterButton:focus-visible,
+.actionButton:focus-visible,
+.resetButton:focus-visible {
+  outline: 2px solid t.$color-electric-cyan;
+  outline-offset: 2px;
+}
+
+
+.filterButton:active,
+.actionButton:active,
+.resetButton:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 2px 2px rgba(0,0,0,0.6);
+}
+
+.filterButton:active .knob {
+  transform: translateY(0px);
+  box-shadow:
+    0 1px 0 rgba(0,0,0,0.65),
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    inset 0 -2px 4px rgba(0,0,0,0.7);
+}
+
+
+.actionButton {
+ background-color: t.$color-matrix-blue-dark;
+  color: t.$color-text;
+}
+
+.actionIcon {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 1px;
+  border: 1px solid t.$color-label-gray;
+}
+
+.actionButton:hover .actionIcon {
+  transform: rotate(12deg);
+}
+
+.resetButton {
+  background-color: t.$color-label-gray;
+  opacity: 0.75;
+  color: t.$color-text;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04),
+    inset 0 -1px 0 rgba(0,0,0,0.5);
+}
+
+.resetIcon {
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 10px solid t.$color-text;
+  position: relative;
+  transform: translateX(4px);
+}
+
+.resetIcon::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: -7px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 10px solid t.$color-text;
+}
+

@@ -1,7 +1,7 @@
 @use "../../../../../src/styles/abstracts/tokens" as t;
 
 .wrapper {
-    background-color: t.$color-label-gray;
+    background: transparent;
     padding: t.$space-xs;
     display: flex; 
     flex-direction: column; 
@@ -38,6 +38,7 @@
 .artist {
     font-family: t.$font-body;
     font-size: t.$font-size-xs;
+    opacity: 0.75;
 }
 
 .title,
@@ -68,32 +69,69 @@
     padding: t.$space-sm;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: t.$space-2xs;
     opacity: 0;
     z-index: 3;
-    transform: translateY(4px);
-    transition: opacity 150ms ease, transform 150ms ease;
-    background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0) 65%);
+    transition: opacity 80ms linear;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(1px);
 
 }
 .overlay p {
     margin: 0;
-    font-size: t.$font-size-xs;
-}
-
-.overlay a {
-    font-size: t.$font-size-xs;
-    text-decoration: underline;
 }
 
 .wrapper:hover .overlay, 
 .wrapper:focus-within .overlay {
     opacity: 1;
-    transform: translateY(0);
 }
 
 .wrapper:hover .tapTarget,
 .wrapper:focus-within .tapTarget {
     pointer-events: none;
+}
+
+.roles {
+  margin: 0;
+  font-family: t.$font-decor;
+  font-size: t.$font-size-md;
+  line-height: t.$line-height-tight;
+  letter-spacing: 0.02em;
+}
+
+.overlayFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-sm;
+}
+
+.year {
+  margin: 0;
+  font-size: t.$font-size-xs;
+  opacity: 0.75;
+}
+
+.spotifyButton {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-xs;
+  padding: 0.35rem 0.6rem;
+  font-size: t.$font-size-xs;
+  text-decoration: none;
+  background: rgba(0,0,0,0.35);
+}
+
+.spotifyIcon {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: 0 0 auto;
+  fill: currentColor;
+  opacity: 0.9;
+}
+
+.spotifyButton:focus-visible {
+  outline: 2px solid t.$color-electric-cyan;
+  outline-offset: 2px;
 }

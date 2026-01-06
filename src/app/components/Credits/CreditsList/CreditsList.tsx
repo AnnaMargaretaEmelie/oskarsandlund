@@ -56,42 +56,80 @@ export function CreditsList({ credits }: CreditsListProps) {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.filters}>
-        <button
-          type="button"
-          onClick={() => handleFilterClick("performance")}
-          className={`${styles.button} ${activeFilter === "performance" ? styles.active : ""}`}
+      <div className={styles.filters} aria-label="Credit filters">
+        <div
+          className={styles.filterItem}
+          data-active={activeFilter === "performance" ? "true" : "false"}
         >
-          Performance
-        </button>
-        <button
-          type="button"
-          onClick={() => handleFilterClick("engineer")}
-          className={`${styles.button} ${activeFilter === "engineer" ? styles.active : ""}`}
+          <span className={styles.led} aria-hidden="true" />
+          <span className={styles.filterLabel}>Performance</span>
+          <button
+            type="button"
+            onClick={() => handleFilterClick("performance")}
+            className={styles.filterButton}
+            aria-label="Filter: Performance"
+          >
+            <span className={styles.knob} aria-hidden="true" />
+          </button>
+        </div>
+
+        <div
+          className={styles.filterItem}
+          data-active={activeFilter === "engineer" ? "true" : "false"}
         >
-          Engineer
-        </button>
-        <button
-          type="button"
-          onClick={() => handleFilterClick("producer")}
-          className={`${styles.button} ${activeFilter === "producer" ? styles.active : ""}`}
+          <span className={styles.led} aria-hidden="true" />
+          <span className={styles.filterLabel}>Engineer</span>
+          <button
+            type="button"
+            onClick={() => handleFilterClick("engineer")}
+            className={styles.filterButton}
+            aria-label="Filter: Engineer"
+          >
+            <span className={styles.knob} aria-hidden="true" />
+          </button>
+        </div>
+
+        <div
+          className={styles.filterItem}
+          data-active={activeFilter === "producer" ? "true" : "false"}
         >
-          Producer
-        </button>
-        <button
-          type="button"
-          onClick={handleRandomizeClick}
-          className={styles.button}
-        >
-          Randomize
-        </button>
-        <button
-          type="button"
-          onClick={() => handleFilterClick("all")}
-          className={styles.reset}
-        >
-          Reset
-        </button>
+          <span className={styles.led} aria-hidden="true" />
+          <span className={styles.filterLabel}>Producer</span>
+          <button
+            type="button"
+            onClick={() => handleFilterClick("producer")}
+            className={styles.filterButton}
+            aria-label="Filter: Producer"
+          >
+            <span className={styles.knob} aria-hidden="true" />
+          </button>
+        </div>
+
+        <div className={styles.filterItem}>
+          <span className={styles.led} aria-hidden="true" />
+          <span className={styles.filterLabel}>Randomize</span>
+          <button
+            type="button"
+            onClick={handleRandomizeClick}
+            className={styles.actionButton}
+            aria-label="Randomize credits"
+          >
+            <span className={styles.actionIcon} aria-hidden="true" />
+          </button>
+        </div>
+
+        <div className={styles.filterItem}>
+          <span className={styles.led} aria-hidden="true" />
+          <span className={styles.filterLabel}>Reset</span>
+          <button
+            type="button"
+            onClick={() => handleFilterClick("all")}
+            className={styles.resetButton}
+            aria-label="Reset filter"
+          >
+            <span className={styles.resetIcon} aria-hidden="true" />
+          </button>
+        </div>
       </div>
       <div className={styles.grid}>
         {creditsToRender.map((credit) => (
