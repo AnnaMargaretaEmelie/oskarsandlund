@@ -14,7 +14,10 @@ export default async function AboutPage() {
   ]);
   return (
     <>
-      <section className="section" aria-labelledby="about-services-heading">
+      <div className="section container">
+        <h1>Services</h1>
+      </div>
+      <section className="section" aria-label="Services">
         <div className="container">
           <ServicesSection services={services ?? []} />
         </div>
