@@ -5,6 +5,7 @@
     border-radius: 0.2rem;
     padding-block: t.$space-lg;
     padding-inline: t.$space-lg;
+    max-width: 60ch;
 }
 
 .inner {
@@ -18,7 +19,6 @@
 .address {
     line-height: t.$line-height-tight;
     min-width: 0;
-    
 }
 
 .layoutRow {

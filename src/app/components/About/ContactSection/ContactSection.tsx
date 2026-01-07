@@ -11,7 +11,7 @@ export function ContactSection({
   contactLocation,
 }: ContactSectionProps) {
   return (
-    <div className={styles.contactBox}>
+    <div className={`u-stack-md bg-grain ${styles.contactBox}`}>
       <div className={`u-stack-md ${styles.inner}`}>
         <h2 id="about-contact-heading">Contact me</h2>
         <div className={styles.layoutRow}>
