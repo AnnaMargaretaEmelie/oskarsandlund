@@ -130,6 +130,21 @@
   }
 }
 
+.aboutSection {
+  position: relative;
+  z-index: 5;
+}
+
+.aboutLabel {
+  margin-top: calc(-1 * t.$space-2xl); 
+}
+
+@media (min-width: t.$breakpoint-md) {
+  .aboutLabel {
+    margin-top: calc(-1 * (t.$space-2xl + 2rem));
+  }
+}
+
 .featuredBox {
   position: relative;
   border-radius: 0.2rem;

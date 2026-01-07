@@ -64,9 +64,14 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="home-bio-heading">
+      <section
+        className={`section ${styles.aboutSection}`}
+        aria-labelledby="home-bio-heading"
+      >
         <div className="container">
-          <div className="u-label u-label--tilt-left u-label--narrow">
+          <div
+            className={`u-label u-label--tilt-left u-label--narrow ${styles.aboutLabel}`}
+          >
             <BioSection
               name={bio?.name ?? undefined}
               profession={bio?.profession ?? undefined}
