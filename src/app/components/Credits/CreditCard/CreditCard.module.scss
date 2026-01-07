@@ -88,6 +88,11 @@
     pointer-events: auto;
 }
 
+.wrapper:focus-within .tapTarget {
+  pointer-events: none;
+}
+
+
 @media (hover: hover) and (pointer: fine) {
   .wrapper:hover .overlay {
     opacity: 1;
