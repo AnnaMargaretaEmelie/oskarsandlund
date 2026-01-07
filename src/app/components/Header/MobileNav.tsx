@@ -41,6 +41,7 @@ export function MobileNavButton() {
     <button
       type="button"
       className={styles.menuButton}
+      aria-label={isOpen ? "Close menu" : "Open menu"}
       aria-expanded={isOpen}
       aria-controls={panelId}
       onClick={toggle}
