@@ -12,6 +12,47 @@
   }
 }
 
+.heroStage {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.2rem;
+
+  /* “hero-kortet” */
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+
+  /* höjd som känns hero på alla skärmar */
+  min-height: clamp(360px, 55vh, 640px);
+}
+
+.heroStage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.4) 50%,
+    rgba(0,0,0,0.13)
+  );
+}
+.heroStage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+
 .heroImage {
   border: 1px solid rgba(255,255,255,0.18);
   border-radius: 0.2rem;
@@ -66,6 +107,27 @@
 
 .heroImg {
   object-fit: cover;
+  object-position: center;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 3;
+
+  padding: t.$space-xl;
+  /* om du vill att texten ska hamna mer åt vänster och inte bli superbred */
+  max-width: 60ch;
+}
+
+.heroContent p {
+  font-family: t.$font-decor;
+  font-size: t.$font-size-xl;
+}
+
+@media (min-width: t.$breakpoint-md) {
+  .heroContent {
+    padding: t.$space-2xl;
+  }
 }
 
 .featuredBox {

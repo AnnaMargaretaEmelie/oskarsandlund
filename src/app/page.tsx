@@ -42,24 +42,22 @@ export default async function Home() {
 
   return (
     <>
-      <section
-        className="section bg-grid bg-grain"
-        aria-labelledby="home-hero-heading"
-      >
+      <section className="section bg-grid bg-grain" aria-label="Hero">
         <div className="container">
-          <div className={styles.hero}>
-            <HeroSection
-              siteTitle={siteSettings?.siteTitle ?? "Oskar Sandlund"}
-              tagline={siteSettings?.tagline ?? undefined}
+          <div className={styles.heroStage}>
+            <Image
+              src="/images/studio-pics/fisheye-studio.jpeg"
+              alt="The studio, packed with gears."
+              fill
+              className={styles.heroImg}
+              sizes="100vw"
+              priority
             />
-            <div className={styles.heroImage}>
-              <Image
-                src="/images/studio-pics/fisheye-studio.jpeg"
-                alt="The studio, packed with gears."
-                fill
-                className={styles.heroImg}
-                sizes="(min-width: 900px) 40vw, 100vw"
-                priority
+
+            <div className={styles.heroContent}>
+              <HeroSection
+                siteTitle={siteSettings?.siteTitle ?? "Oskar Sandlund"}
+                tagline={siteSettings?.tagline ?? undefined}
               />
             </div>
           </div>
@@ -83,7 +81,7 @@ export default async function Home() {
         aria-labelledby="home-featured-credits-heading"
       >
         <div className="container">
-          <div className={`${styles.featuredBox} bg-grid--light`}>
+          <div className={`${styles.featuredBox} bg-grid`}>
             <FeaturedCreditsSection credits={featuredCreditsWithCover ?? []} />
             <div className={styles.featuredCta}>
               <a href="/credits" className={styles.featuredCtaButton}>
