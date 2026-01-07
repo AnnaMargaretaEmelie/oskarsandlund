@@ -101,11 +101,13 @@ Design tokens are used consistently for colors, spacing, and typography.
 ## Environment variables
 
 NEXT_PUBLIC_SANITY_PROJECT_ID=
+
 NEXT_PUBLIC_SANITY_DATASET=
 
 SANITY_API_TOKEN=
 
 SPOTIFY_CLIENT_ID=
+
 SPOTIFY_CLIENT_SECRET=
 
 RESEND_API_KEY=
@@ -118,15 +120,14 @@ These variables are required both for local development and deployment.
 
 Clone the repository and install dependencies:
 
+```
 git clone https://github.com/AnnaMargaretaEmelie/oskarsandlund
 npm install
 npm run dev
 
+```
+
 Create a .env.local file and add the required environment variables.
-
-Run the development server:
-
-npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -136,8 +137,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 To build the project for production:
 
+```
 npm run build
 npm run start
+
+```
 
 ---
 

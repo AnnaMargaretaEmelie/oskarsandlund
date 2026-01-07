@@ -3,12 +3,14 @@ type ContactSectionProps = {
   contactEmail?: string;
   contactPhone?: string;
   contactLocation?: string;
+  instagramUrl?: string;
 };
 
 export function ContactSection({
   contactEmail,
   contactPhone,
   contactLocation,
+  instagramUrl,
 }: ContactSectionProps) {
   return (
     <div className={`u-stack-md bg-grain ${styles.contactBox}`}>
@@ -31,6 +33,18 @@ export function ContactSection({
               <p>
                 <strong>Located at: </strong>
                 {contactLocation}
+              </p>
+            )}
+            {instagramUrl && (
+              <p>
+                <strong>Instagram: </strong>
+                <a
+                  href={instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  instagram.com/freskobaldi
+                </a>
               </p>
             )}
           </div>
