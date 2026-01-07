@@ -115,7 +115,11 @@ export function ContactForm() {
         {receipt?.sanityId && (
           <p className={styles.meta}>Reference: {receipt.sanityId}</p>
         )}
-        <button type="button" className={styles.button} onClick={resetForm}>
+        <button
+          type="button"
+          className={`u-cta ${styles.button}`}
+          onClick={resetForm}
+        >
           Send me another one!
         </button>
       </div>

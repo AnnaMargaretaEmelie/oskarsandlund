@@ -5,6 +5,11 @@
     padding-block: t.$space-md;
 }
 
+.header a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
 .inner {
     display: flex;
     align-items: flex-start;

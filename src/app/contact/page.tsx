@@ -7,7 +7,7 @@ export default function ContactPage() {
       <div className="container">
         <div className="u-stack-md">
           <h1>Contact</h1>
-          <p>Give me a ring! Or slide into my contact form below.</p>
+          <p>Get in touch!</p>
           <div className={styles.formWrap}>
             <ContactForm />
           </div>
