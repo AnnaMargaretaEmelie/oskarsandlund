@@ -190,8 +190,12 @@ export function ContactForm() {
             </p>
           )}
         </div>
-        <button type="submit" disabled={isSubmitting} className={styles.button}>
-          {isSubmitting ? "Sending..." : "Send"}
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className={`u-cta ${styles.button}`}
+        >
+          {isSubmitting ? "Sending..." : "Send message"}
         </button>
       </form>
     </div>

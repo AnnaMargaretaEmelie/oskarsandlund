@@ -57,8 +57,14 @@
 }
 
 .button[disabled] {
-  background-color: t.$color-knob-gray ;
   cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.button[disabled]:hover,
+.button[disabled]:focus-visible {
+  transform: none;
+  box-shadow: none;
 }
 
 .error {
