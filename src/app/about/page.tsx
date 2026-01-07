@@ -17,6 +17,11 @@ export default async function AboutPage() {
     sanityClient.fetch<SERVICES_QUERYResult>(SERVICES_QUERY),
   ]);
 
+  const instagramUrl =
+    siteSettings?.socialLinks?.find(
+      (l) => typeof l?.url === "string" && l.url.includes("instagram.com")
+    )?.url ?? undefined;
+
   return (
     <>
       <div className="section container bg-grain">
@@ -49,6 +54,7 @@ export default async function AboutPage() {
               contactEmail={siteSettings?.contactEmail ?? undefined}
               contactPhone={siteSettings?.contactPhone ?? undefined}
               contactLocation={siteSettings?.contactLocation ?? undefined}
+              instagramUrl={instagramUrl}
             />
           </div>
         </section>
