@@ -42,33 +42,36 @@ export default async function Home() {
 
   return (
     <>
-      <section
-        className="section bg-grid bg-grain"
-        aria-labelledby="home-hero-heading"
-      >
+      <section className="section bg-grid bg-grain" aria-label="Hero">
         <div className="container">
-          <div className={styles.hero}>
-            <HeroSection
-              siteTitle={siteSettings?.siteTitle ?? "Oskar Sandlund"}
-              tagline={siteSettings?.tagline ?? undefined}
+          <div className={styles.heroStage}>
+            <Image
+              src="/images/studio-pics/fisheye-studio.jpeg"
+              alt="The studio, packed with gears."
+              fill
+              className={styles.heroImg}
+              sizes="100vw"
+              priority
             />
-            <div className={styles.heroImage}>
-              <Image
-                src="/images/studio-pics/fisheye-studio.jpeg"
-                alt="The studio, packed with gears."
-                fill
-                className={styles.heroImg}
-                sizes="(min-width: 900px) 40vw, 100vw"
-                priority
+
+            <div className={styles.heroContent}>
+              <HeroSection
+                siteTitle={siteSettings?.siteTitle ?? "Oskar Sandlund"}
+                tagline={siteSettings?.tagline ?? undefined}
               />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section" aria-labelledby="home-bio-heading">
+      <section
+        className={`section ${styles.aboutSection}`}
+        aria-labelledby="home-bio-heading"
+      >
         <div className="container">
-          <div className="u-label u-label--tilt-left u-label--narrow">
+          <div
+            className={`u-label u-label--tilt-left u-label--narrow ${styles.aboutLabel}`}
+          >
             <BioSection
               name={bio?.name ?? undefined}
               profession={bio?.profession ?? undefined}
@@ -83,7 +86,7 @@ export default async function Home() {
         aria-labelledby="home-featured-credits-heading"
       >
         <div className="container">
-          <div className={`${styles.featuredBox} bg-grid--light`}>
+          <div className={`${styles.featuredBox} bg-grid`}>
             <FeaturedCreditsSection credits={featuredCreditsWithCover ?? []} />
             <div className={styles.featuredCta}>
               <a href="/credits" className={styles.featuredCtaButton}>
