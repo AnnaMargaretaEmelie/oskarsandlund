@@ -63,7 +63,7 @@
   left: auto;
   right: 0.75rem; 
   top: 50%;
-  transform: translateY(-50%);          /* LED inne i “knappytan” */
+  transform: translateY(-50%);          
 }
 
 .desktopNav {
@@ -250,7 +250,8 @@
   font-family: t.$font-body;
   font-size: t.$font-size-sm;
   line-height: t.$line-height-tight;
-  color: t.$color-text-muted;
+  color: t.$color-text;
+  opacity: 0.85;
   white-space: nowrap;
 }
 
