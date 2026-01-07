@@ -1,15 +1,47 @@
 @use "../../styles/abstracts/tokens" as t;
 
-.page {
-  margin: 0 auto;
-  max-width: 1200px;
-  
-  padding-inline: t.$space-lg;
-  padding-block: t.$space-md;
+.stage {
+  position: relative;
 }
 
-.stack {
-  display: flex;
-  flex-direction: column;
-  gap: t.$space-lg;
+.stageImage {
+  position: absolute;
+  top: t.$space-2xl;
+  right: 0.5rem;
+
+  width: clamp(260px, 32vw, 420px);
+  height: clamp(280px, 35vw, 380px);
+
+  border-radius: 0.2rem; /* match your design */
+  overflow: hidden;
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+.stageImage :global(img) {
+  object-fit: cover;
+  object-position: center;
+}
+
+.services {
+  position: relative;
+  z-index: 1;
+}
+
+.contact {
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 900px) {
+  .contact {
+    margin-top: calc(-1 * t.$space-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .stageImage {
+    display: none;
+  }
 }

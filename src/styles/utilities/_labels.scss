@@ -5,9 +5,9 @@
   width: 100%;
 
   padding: t.$space-lg;
-  border-radius: 0.5rem;
+  border-radius: 0.35rem;
 
-  background: rgba(255,255,255,0.82);
+  background: rgba(255,255,255,0.95);
   color: t.$color-synth-black;
   border: 1px solid rgba(0,0,0,0.15);
 
@@ -21,7 +21,7 @@
   position: absolute;
   inset: t.$space-lg;
   pointer-events: none;
-  border-radius: 0.35rem;
+  border-radius: 0.25rem;
 
   background-image: repeating-linear-gradient(
     to bottom,

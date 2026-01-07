@@ -69,7 +69,7 @@ export function MobileNavPanel() {
         </li>
         <li>
           <NavLink href="/about" onClick={close}>
-            About
+            Services
           </NavLink>
         </li>
         <li>
