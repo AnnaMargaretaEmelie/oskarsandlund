@@ -25,4 +25,10 @@ main {
 a {
   color: inherit;
   text-decoration: none;
+  
 }
+
+a:hover {
+  color: t.$color-electric-cyan;
+}
+

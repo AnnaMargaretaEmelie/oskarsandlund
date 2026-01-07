@@ -89,7 +89,7 @@ export default async function Home() {
           <div className={`${styles.featuredBox} bg-grid`}>
             <FeaturedCreditsSection credits={featuredCreditsWithCover ?? []} />
             <div className={styles.featuredCta}>
-              <a href="/credits" className={styles.featuredCtaButton}>
+              <a href="/credits" className="u-cta">
                 All credits →
               </a>
             </div>

@@ -115,7 +115,11 @@ export function ContactForm() {
         {receipt?.sanityId && (
           <p className={styles.meta}>Reference: {receipt.sanityId}</p>
         )}
-        <button type="button" className={styles.button} onClick={resetForm}>
+        <button
+          type="button"
+          className={`u-cta ${styles.button}`}
+          onClick={resetForm}
+        >
           Send me another one!
         </button>
       </div>
@@ -186,8 +190,12 @@ export function ContactForm() {
             </p>
           )}
         </div>
-        <button type="submit" disabled={isSubmitting} className={styles.button}>
-          {isSubmitting ? "Sending..." : "Send"}
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className={`u-cta ${styles.button}`}
+        >
+          {isSubmitting ? "Sending..." : "Send message"}
         </button>
       </form>
     </div>
