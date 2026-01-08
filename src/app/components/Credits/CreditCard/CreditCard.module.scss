@@ -1,110 +1,132 @@
 @use "../../../../../src/styles/abstracts/tokens" as t;
 
+/* =========================
+   Card layout
+========================= */
+
 .wrapper {
-    background: transparent;
-    padding: t.$space-xs;
-    display: flex; 
-    flex-direction: column; 
-    gap: t.$space-2xs;
-    aspect-ratio: 1/1.25;
+  background: transparent;
+  padding: t.$space-xs;
+
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2xs;
+
+  aspect-ratio: 1 / 1.25;
 }
 
 .imageWrapper {
-    aspect-ratio: 1/1;
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
 }
 
 .coverImage {
-    object-fit: cover;
+  object-fit: cover;
 }
 
 .placeholder {
-    width: 100%;
-    height: 100%;
-    background-color: t.$color-matrix-blue;
+  width: 100%;
+  height: 100%;
+  background-color: t.$color-matrix-blue;
 }
 
-.title {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    font-family: t.$font-decor;
-    font-size: t.$font-size-md;
-}
-
-.artist {
-    font-family: t.$font-body;
-    font-size: t.$font-size-xs;
-    opacity: 0.75;
-}
+/* =========================
+   Text
+========================= */
 
 .title,
 .artist {
-    margin: 0;
-    line-height: t.$line-height-tight;
+  margin: 0;
+  line-height: t.$line-height-tight;
 }
 
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+
+  font-family: t.$font-decor;
+  font-size: t.$font-size-md;
+}
+
+.artist {
+  font-family: t.$font-body;
+  font-size: t.$font-size-xs;
+  opacity: 0.75;
+}
+
+/* =========================
+   Tap target + overlay
+========================= */
+
 .tapTarget {
-    position: absolute;
-    cursor: pointer;
-    inset: 0;
-    background: transparent;
-    border: 0;
-    transition: opacity 150ms ease;
-    z-index: 2;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  cursor: pointer;
+  background: transparent;
+  border: 0;
 }
 
 .tapTarget:focus-visible {
-    outline: 2px solid t.$color-electric-cyan;
-    outline-offset: 2px;
-
+  outline: 2px solid t.$color-electric-cyan;
+  outline-offset: 2px;
 }
 
 .overlay {
-    position: absolute;
-    inset: 0;
-    padding: t.$space-sm;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: t.$space-2xs;
-    opacity: 0;
-    z-index: 3;
-    transition: opacity 80ms linear;
-    background: rgba(0, 0, 0, 0.72);
-    backdrop-filter: blur(1px);
-    pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  padding: t.$space-sm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: t.$space-2xs;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 80ms linear;
+
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(1px);
 }
 
 .overlay p {
-    margin: 0;
-}
- 
-.wrapper:focus-within .overlay {
-    opacity: 1;
-    pointer-events: auto;
+  margin: 0;
 }
 
-.wrapper:focus-within .tapTarget {
-  pointer-events: none;
+/* =========================
+   Open states (mobile via data attribute)
+========================= */
+
+.wrapper[data-open="true"] .overlay {
+  opacity: 1;
 }
 
+
+/* =========================
+   Hover behaviour (desktop)
+========================= */
 
 @media (hover: hover) and (pointer: fine) {
   .wrapper:hover .overlay {
     opacity: 1;
     pointer-events: auto;
   }
-}
 
-@media (hover: hover) and (pointer: fine) {
   .wrapper:hover .tapTarget {
     pointer-events: none;
   }
 }
+
+/* =========================
+   Overlay content
+========================= */
 
 .roles {
   margin: 0;
@@ -127,20 +149,28 @@
   opacity: 0.75;
 }
 
+/* =========================
+   Spotify link
+========================= */
+
 .spotifyButton {
   display: inline-flex;
   align-items: center;
   gap: t.$space-xs;
+  pointer-events: auto;
+
   padding: 0.35rem 0.6rem;
   font-size: t.$font-size-xs;
   text-decoration: none;
-  background: rgba(0,0,0,0.35);
+
+  background: rgba(0, 0, 0, 0.35);
 }
 
 .spotifyIcon {
   width: 0.9rem;
   height: 0.9rem;
   flex: 0 0 auto;
+
   fill: currentColor;
   opacity: 0.9;
 }
