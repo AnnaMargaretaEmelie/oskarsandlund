@@ -4,7 +4,11 @@ import { ALL_CREDITS_QUERYResult } from "@/lib/sanity/sanity.types";
 import Image from "next/image";
 import { useState, useEffect, useMemo, useRef } from "react";
 import { enqueueCoverFetch } from "@/lib/spotify/coverQueue";
-import { inCooldown, setCooldown } from "@/lib/spotify/coverCooldown";
+import {
+  inCooldown,
+  setCooldown,
+  disableCoversForSession,
+} from "@/lib/spotify/coverCooldown";
 
 type Credit = ALL_CREDITS_QUERYResult[number];
 
@@ -52,12 +56,14 @@ export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
               return;
             }
             await enqueueCoverFetch(async () => {
+              if (inCooldown()) return;
               const res = await fetch(url);
 
               if (res.status === 429) {
                 const retryAfter = res.headers.get("Retry-After");
-                const seconds = retryAfter ? Number(retryAfter) : 30;
-                setCooldown((Number.isFinite(seconds) ? seconds : 30) * 1000);
+                const seconds = retryAfter ? Number(retryAfter) : 60;
+                disableCoversForSession();
+                setCooldown((Number.isFinite(seconds) ? seconds : 60) * 1000);
                 hasRequestedRef.current = false;
                 return;
               }
@@ -74,8 +80,8 @@ export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
       {
         root: null,
 
-        rootMargin: "50px 0px",
-        threshold: 0.01,
+        rootMargin: "0px 0px",
+        threshold: 0.5,
       }
     );
 

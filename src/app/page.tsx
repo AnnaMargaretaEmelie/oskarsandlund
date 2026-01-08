@@ -9,7 +9,6 @@ import {
   SITE_SETTINGS_QUERYResult,
   BIO_QUERYResult,
 } from "@/lib/sanity/sanity.types";
-import { getSpotifyCoverUrl } from "@/lib/spotify/spotify";
 import { urlFor } from "@/lib/sanity/sanity.image";
 import { HeroSection } from "./components/Home/HeroSection/HeroSection";
 import { BioSection } from "./components/Home/BioSection/BioSection";
@@ -23,22 +22,16 @@ export default async function Home() {
     sanityClient.fetch<BIO_QUERYResult>(BIO_QUERY),
     sanityClient.fetch<FEATURED_CREDITS_QUERYResult>(FEATURED_CREDITS_QUERY),
   ]);
-  const featuredCreditsWithCover = await Promise.all(
-    featuredCredits.map(async (credit) => {
-      const spotifyCover = credit.spotifyUrl
-        ? await getSpotifyCoverUrl(credit.spotifyUrl)
-        : null;
+  const featuredCreditsWithCover = featuredCredits.map((credit) => {
+    const sanityCover = credit.coverImage
+      ? urlFor(credit.coverImage).width(600).height(600).url()
+      : null;
 
-      const sanityCover = credit.coverImage
-        ? urlFor(credit.coverImage).width(600).height(600).url()
-        : null;
-
-      return {
-        ...credit,
-        resolvedCoverSrc: spotifyCover ?? sanityCover ?? null,
-      };
-    })
-  );
+    return {
+      ...credit,
+      resolvedCoverSrc: credit.spotifyCoverUrl ?? sanityCover ?? null,
+    };
+  });
 
   return (
     <>

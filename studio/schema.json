@@ -798,6 +798,13 @@
         },
         "optional": true
       },
+      "spotifyCoverUrl": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "isFeatured": {
         "type": "objectAttribute",
         "value": {
