@@ -2,21 +2,28 @@
 import styles from "./CreditCard.module.scss";
 import { ALL_CREDITS_QUERYResult } from "@/lib/sanity/sanity.types";
 import Image from "next/image";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 type Credit = ALL_CREDITS_QUERYResult[number];
 
 type CreditCardProps = {
   credit: Credit;
   resolvedCoverSrc?: string | null;
+  eager?: boolean;
 };
 
-export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
+export function CreditCard({
+  credit,
+  resolvedCoverSrc,
+  eager,
+}: CreditCardProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const coverSrc = resolvedCoverSrc ?? null;
 
-  const coverAlt = `Cover for ${credit.title}${credit.artist ? ` by ${credit.artist}` : ""}`;
+  const coverAlt = useMemo(() => {
+    return `Cover for ${credit.title}${credit.artist ? ` by ${credit.artist}` : ""}`;
+  }, [credit.title, credit.artist]);
 
   return (
     <div className={styles.wrapper} data-open={isOpen ? "true" : "false"}>
@@ -28,16 +35,20 @@ export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
             fill
             sizes="(max-width: 768px) 50vw, 200px"
             className={styles.coverImage}
+            loading={eager ? "eager" : "lazy"}
+            priority={eager}
           />
         ) : (
           <div className={styles.placeholder} aria-hidden="true" />
         )}
+
         <button
           type="button"
           className={styles.tapTarget}
           aria-label={`Show details for ${credit.title}`}
           onClick={() => setIsOpen((v) => !v)}
         />
+
         <div className={styles.overlay}>
           {credit.roles?.length ? (
             <p className={styles.roles}>{credit.roles.join(" | ")}</p>
@@ -71,6 +82,7 @@ export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
           </div>
         </div>
       </div>
+
       <p className={styles.title}>{credit.title}</p>
       <p className={styles.artist}>{credit.artist}</p>
     </div>

@@ -26,6 +26,7 @@ export function FeaturedCreditsSection({
               key={credit._id}
               credit={credit}
               resolvedCoverSrc={credit.resolvedCoverSrc}
+              eager
             />
           ))}
         </div>

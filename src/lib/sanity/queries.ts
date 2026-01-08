@@ -10,6 +10,7 @@ export const ALL_CREDITS_QUERY = defineQuery(`
   year,
   coverImage,
   spotifyUrl,
+  spotifyCoverUrl,
   notes,
   isFeatured,
   "slug": slug.current
@@ -26,6 +27,7 @@ export const FEATURED_CREDITS_QUERY = defineQuery(`
   year,
   coverImage,
   spotifyUrl,
+  spotifyCoverUrl,
   notes,
   isFeatured,
   "slug": slug.current
