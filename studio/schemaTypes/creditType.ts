@@ -57,6 +57,13 @@ export const creditType = defineType({
             description: "Link to album or track on Spotify."
         }),
         defineField({
+            name: "spotifyCoverUrl",
+            title: "Spotify cover URL",
+            type: "url",
+            description: "Chached cover image URL fetched from Spotify (synced by script).",
+            readOnly: true,
+        }),
+        defineField({
             name: "isFeatured",
             title: "Featured on Home page",
             type: "boolean",
