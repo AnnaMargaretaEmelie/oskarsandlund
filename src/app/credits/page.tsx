@@ -2,6 +2,7 @@ import { ALL_CREDITS_QUERY } from "@/lib/sanity/queries";
 import { sanityClient } from "@/lib/sanity/sanity.client";
 import { ALL_CREDITS_QUERYResult } from "@/lib/sanity/sanity.types";
 import { CreditsList } from "../components/Credits/CreditsList/CreditsList";
+
 import { urlFor } from "@/lib/sanity/sanity.image";
 
 export default async function CreditsPage() {
@@ -15,7 +16,7 @@ export default async function CreditsPage() {
 
     return {
       ...credit,
-      resolvedCoverSrc: credit.spotifyCoverUrl ?? sanityCover ?? null,
+      resolvedCoverSrc: sanityCover ?? null,
     };
   });
 
