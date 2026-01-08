@@ -131,7 +131,7 @@ export function CreditsList({ credits }: CreditsListProps) {
           </button>
         </div>
       </div>
-      <div className={styles.grid}>
+      <div className={`bg-grid ${styles.grid}`}>
         {creditsToRender.map((credit) => (
           <CreditCard
             key={credit._id}
