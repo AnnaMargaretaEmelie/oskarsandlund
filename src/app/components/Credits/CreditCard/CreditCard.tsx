@@ -2,100 +2,31 @@
 import styles from "./CreditCard.module.scss";
 import { ALL_CREDITS_QUERYResult } from "@/lib/sanity/sanity.types";
 import Image from "next/image";
-import { useState, useEffect, useMemo, useRef } from "react";
-import { enqueueCoverFetch } from "@/lib/spotify/coverQueue";
-import {
-  inCooldown,
-  setCooldown,
-  disableCoversForSession,
-} from "@/lib/spotify/coverCooldown";
+import { useMemo, useState } from "react";
 
 type Credit = ALL_CREDITS_QUERYResult[number];
 
 type CreditCardProps = {
   credit: Credit;
   resolvedCoverSrc?: string | null;
+  eager?: boolean;
 };
 
-export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
+export function CreditCard({
+  credit,
+  resolvedCoverSrc,
+  eager,
+}: CreditCardProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [coverSrc, setCoverSrc] = useState<string | null>(
-    resolvedCoverSrc ?? null
-  );
-  const hasRequestedRef = useRef(false);
 
-  const cardRef = useRef<HTMLDivElement | null>(null);
+  const coverSrc = resolvedCoverSrc ?? null;
 
   const coverAlt = useMemo(() => {
     return `Cover for ${credit.title}${credit.artist ? ` by ${credit.artist}` : ""}`;
   }, [credit.title, credit.artist]);
 
-  useEffect(() => {
-    if (coverSrc) return;
-    if (!credit.spotifyUrl) return;
-    if (hasRequestedRef.current) return;
-
-    const el = cardRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (!entry?.isIntersecting) return;
-
-        hasRequestedRef.current = true;
-
-        (async () => {
-          try {
-            const url = `/api/spotify-cover?spotifyUrl=${encodeURIComponent(
-              credit.spotifyUrl!
-            )}`;
-
-            if (inCooldown()) {
-              hasRequestedRef.current = false;
-              return;
-            }
-            await enqueueCoverFetch(async () => {
-              if (inCooldown()) return;
-              const res = await fetch(url);
-
-              if (res.status === 429) {
-                const retryAfter = res.headers.get("Retry-After");
-                const seconds = retryAfter ? Number(retryAfter) : 60;
-                disableCoversForSession();
-                setCooldown((Number.isFinite(seconds) ? seconds : 60) * 1000);
-                hasRequestedRef.current = false;
-                return;
-              }
-
-              if (!res.ok) return;
-              const json = (await res.json()) as { coverUrl: string | null };
-              if (json.coverUrl) setCoverSrc(json.coverUrl);
-            });
-          } catch {}
-        })();
-
-        observer.disconnect();
-      },
-      {
-        root: null,
-
-        rootMargin: "0px 0px",
-        threshold: 0.5,
-      }
-    );
-
-    observer.observe(el);
-
-    return () => observer.disconnect();
-  }, [coverSrc, credit.spotifyUrl]);
-
   return (
-    <div
-      ref={cardRef}
-      className={styles.wrapper}
-      data-open={isOpen ? "true" : "false"}
-    >
+    <div className={styles.wrapper} data-open={isOpen ? "true" : "false"}>
       <div className={styles.imageWrapper}>
         {coverSrc ? (
           <Image
@@ -104,6 +35,8 @@ export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
             fill
             sizes="(max-width: 768px) 50vw, 200px"
             className={styles.coverImage}
+            loading={eager ? "eager" : "lazy"}
+            priority={eager}
           />
         ) : (
           <div className={styles.placeholder} aria-hidden="true" />
