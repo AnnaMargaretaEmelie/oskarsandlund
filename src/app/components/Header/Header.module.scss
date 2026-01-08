@@ -59,7 +59,7 @@
   height: 0.5rem;
   border-radius: 50%;
 
-  background-color: red; // byt till “LED-röd” token sen
+  background-color: t.$color-diode-red;
 
   box-shadow: 0 0 6px rgba(255, 0, 0, 0.8);
 }
@@ -174,7 +174,7 @@
 }
 
 .menuButton[aria-expanded="true"] .menuLed {
-  background: red; // byt till token sen
+  background: t.$color-diode-red;
   box-shadow: 0 0 6px rgba(255, 0, 0, 0.8);
 }
 

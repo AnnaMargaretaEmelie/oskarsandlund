@@ -48,7 +48,9 @@ export function ContactSection({
               </p>
             )}
           </div>
-          <p className={`u-cta ${styles.contactLink}`}>Contactform → </p>
+          <a href="/contact" className={`u-cta ${styles.contactLink}`}>
+            Contactform →{" "}
+          </a>
         </div>
       </div>
     </div>

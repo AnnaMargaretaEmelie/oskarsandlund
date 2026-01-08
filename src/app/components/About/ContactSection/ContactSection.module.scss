@@ -30,5 +30,17 @@
 
 .contactLink {
     align-self: end;
+    justify-self: end;
+}
+
+@media (max-width: t.$breakpoint-sm) {
+  .layoutRow {
+    grid-template-columns: 1fr;
+    gap: t.$space-md;
+  }
+
+  .contactLink {
+    justify-self: end;
+  }
 }
 
