@@ -2,6 +2,7 @@
 import styles from "./CreditCard.module.scss";
 import { ALL_CREDITS_QUERYResult } from "@/lib/sanity/sanity.types";
 import Image from "next/image";
+import { useState } from "react";
 
 type Credit = ALL_CREDITS_QUERYResult[number];
 
@@ -11,12 +12,14 @@ type CreditCardProps = {
 };
 
 export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
   const coverSrc = resolvedCoverSrc ?? null;
 
   const coverAlt = `Cover for ${credit.title}${credit.artist ? ` by ${credit.artist}` : ""}`;
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} data-open={isOpen ? "true" : "false"}>
       <div className={styles.imageWrapper}>
         {coverSrc ? (
           <Image
@@ -33,7 +36,7 @@ export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
           type="button"
           className={styles.tapTarget}
           aria-label={`Show details for ${credit.title}`}
-          onClick={(e) => e.currentTarget.focus()}
+          onClick={() => setIsOpen((v) => !v)}
         />
         <div className={styles.overlay}>
           {credit.roles?.length ? (
@@ -51,6 +54,7 @@ export function CreditCard({ credit, resolvedCoverSrc }: CreditCardProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.spotifyButton}
+                onClick={(e) => e.stopPropagation()}
                 aria-label={`Listen to ${credit.title} on Spotify`}
               >
                 <svg
