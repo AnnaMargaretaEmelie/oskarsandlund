@@ -16,7 +16,7 @@ export default async function CreditsPage() {
 
     return {
       ...credit,
-      resolvedCoverSrc: sanityCover ?? null,
+      resolvedCoverSrc: credit.spotifyCoverUrl ?? sanityCover ?? null,
     };
   });
 
